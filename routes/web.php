@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DataController;
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,6 +18,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+    if (Auth::check() && Auth::user()->type === 'admin') { 
+        return Inertia::render('AdminDashboard'); 
+    }
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/viewUserData', [DataController::class , 'index'])->middleware(['auth', 'verified'])->name('viewUserData');
