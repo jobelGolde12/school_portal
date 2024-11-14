@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('end_date')->nullable();
             $table->boolean('is_active')->default(true);
             $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

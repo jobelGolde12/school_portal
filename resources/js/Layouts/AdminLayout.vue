@@ -16,7 +16,7 @@ const showingNavigationDropdown = ref(false);
       <div
         class="dashboard-container bg-light d-flex flex-row justify-content-between align-items-center"
       >
-        <div class="sidebar bg-light ps-2">
+        <div class="sidebar ps-2">
           <div class="logo">
             <i class="bi bi-bar-chart-line-fill"></i> Admin Dashboard
           </div>
@@ -64,11 +64,12 @@ const showingNavigationDropdown = ref(false);
   width: 20%;
   position: relative;
   padding-top: 20px;
-  border-right: 3px solid #28a745;
+  background: rgba(0,0,0,.1);
+  /* border-right: 3px solid #28a745; */
 }
 .sidebar .logo {
   font-size: 1.2rem;
-  color: #28a745;
+  color: #333;
   font-weight: bold;
   margin-bottom: 20px;
   padding-left: 20px;

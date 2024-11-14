@@ -1,7 +1,7 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import Announcement from '@/Components/Announcement.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 </script>
 
 <template>
@@ -14,7 +14,10 @@ import { Head } from '@inertiajs/vue3';
         </h2>
     </template>
 
-    <div class="py-12">
+    <div class="container-fluid d-flex justify-content-end mt-5 pt-4">
+        <Link :href="route('announcement.index')" class="btn btn-success"><i class="bi bi-plus"></i> New announcement</Link>
+    </div>
+    <div>
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="container mt-5">
                <Announcement />
