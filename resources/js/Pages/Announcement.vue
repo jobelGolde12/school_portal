@@ -7,17 +7,18 @@ import { useForm, Head , Link} from '@inertiajs/vue3';
         start_date: '',
         end_date: '',
         is_active: true,
-        created_by: null,
+        created_by: user.name,
  })
  const submit = () =>{
     formData.post(route('announcement.store'));
  }
+ const user = usePage().props.auth.user;
 </script>
 <template>
     <Head title="create announcement" />
     <h1 class="text-dark fw-light text-center">Create announcement</h1>
      <div class="container mt-4">
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="submit">
       <!-- Title Field -->
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
@@ -81,19 +82,6 @@ import { useForm, Head , Link} from '@inertiajs/vue3';
         </select>
       </div>
 
-      <!-- Created By Field -->
-      <div class="mb-3">
-        <label for="created_by" class="form-label">Created By</label>
-        <input
-          type="number"
-          id="created_by"
-          class="form-control"
-          v-model="formData.created_by"
-          min="0"
-          max="18446744073709551615"
-          required
-        />
-      </div>
 
       <!-- Submit Button -->
       <button type="submit" class="btn btn-primary">Submit</button>

@@ -2,6 +2,15 @@
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import Announcement from '@/Components/Announcement.vue';
 import { Head, Link } from '@inertiajs/vue3';
+import { defineProps } from 'vue';
+
+const announcement = defineProps({
+    announcement:{
+        type: Array,
+        default: () => []
+    }
+});
+console.log(announcement)
 </script>
 
 <template>
@@ -20,7 +29,7 @@ import { Head, Link } from '@inertiajs/vue3';
     <div>
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="container mt-5">
-               <Announcement />
+               <Announcement :announcement="announcement"/>
             </div>
         </div>
     </div>
