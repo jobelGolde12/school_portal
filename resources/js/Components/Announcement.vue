@@ -1,38 +1,46 @@
 
 <template>
-<div>
-    announcement - {{ announcement }}
-    <div class="card w-50 text-light">
+<div v-if="announcements">
+    <div class="card w-50 text-light" v-for="(data, index) in announcements" :key="index">
         <div class="container py-2 text-center">
             <i class="bi bi-megaphone fs-1"></i>
-            <h5 class="card-title">Important Announcement</h5>
+            <h5 class="card-title">{{ data.title }}</h5>
         </div>
         <div class="card-body">
-            <!-- <h6 class="card-subtitle mb-2 text-muted">Announcement Title</h6> -->
             <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Suspendisse potenti. Phasellus fringilla non est ac laoreet.
+                {{ data.content }}
             </p>
             <p class="card-text">
-                <strong>Start Date:</strong> <span>2024-11-15</span><br>
-                <strong>End Date:</strong> <span>2024-12-15</span>
+                <strong>Start Date:</strong> <span>{{ data.start_date }}</span><br>
+                <strong>End Date:</strong> <span>{{ data.end_date }}</span>
             </p>
             <p class="card-text">
-                <strong>Status:</strong> <span class="badge badge-success">Active</span>
+                <strong>Status:</strong> <span class="badge badge-success">{{ data.is_active }}</span>
             </p>
         </div>
         <div class="container py-2 text-muted">
-            Created by: <strong>User ID 1</strong> | <small>2024-11-14</small>
+            Created at: <small>{{ formatDate(data.created_at) }}</small>
         </div>
     </div>
 </div>
 </template>
 <script>
 export default{
-    data(){
-    return{
-        props: ['announcement']
-    }
- }
+ props: ['announcements'],
+ methods: {
+        formatDate(isoDate) {
+            const date = new Date(isoDate);
+            return new Intl.DateTimeFormat('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true,
+            }).format(date);
+        },
+    },
 }
 </script>
 <style lang="css" scoped>

@@ -2,6 +2,13 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Announcement from '@/Components/Announcement.vue';
 import { Head } from '@inertiajs/vue3';
+import { defineProps } from 'vue';
+defineProps({
+    announcement: {
+        type: Array,
+        required: true
+    }
+})
 </script>
 
 <template>
@@ -17,7 +24,7 @@ import { Head } from '@inertiajs/vue3';
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="container mt-5">
-               <Announcement />
+               <Announcement :announcements="announcement"/>
             </div>
         </div>
     </div>

@@ -18,8 +18,12 @@ const form = useForm({
     email: user.email,
     type: user.type
 });
+const passForm = {
+    'name': form.name,
+    'type': form.type
+}
 console.log('this is the announcement from dashboard - ' + JSON.stringify(announcement));
-console.log('form data = ' + form.name)
+console.log('form data = ' + form.type)
 // return{form}
 </script>
 
@@ -40,7 +44,7 @@ console.log('form data = ' + form.name)
       
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="container mt-5">
-               <Announcement :announcement="announcement" :user="form"/>
+               <Announcement :announcements="announcement.announcement" :user="passForm"/>
             </div>
         </div>
     </div>

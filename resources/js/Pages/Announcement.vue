@@ -1,5 +1,5 @@
 
-<!-- <script setup>
+<script setup>
 import { useForm, Head , Link} from '@inertiajs/vue3';
 const userData = defineProps({
   user: Object
@@ -15,9 +15,9 @@ const userData = defineProps({
  const submit = () =>{
     formData.post(route('announcement.store'));
  }
- console.log("user from announcement + " = userData.name)
-</script> -->
-<script>
+ console.log("user from announcement + " + userData.name)
+</script>
+<!-- <script>
 import { Head, Link } from '@inertiajs/vue3';
 export default{
   data(){
@@ -39,7 +39,7 @@ export default{
     }
   }
 }
-</script>
+</script> -->
 
 <template>
     <Head title="create announcement" />

@@ -13,7 +13,9 @@ class DashboardController extends Controller
     public function index(){
         $announcement = AnnouncementModel::all();
             if (Auth::check() && Auth::user()->type === 'admin') { 
-                return Inertia::render('AdminDashboard'); 
+                return Inertia::render('AdminDashboard', [
+                'announcement' => $announcement,
+            ]); 
             }
             return Inertia::render('Dashboard', [
                 'announcement' => $announcement,
