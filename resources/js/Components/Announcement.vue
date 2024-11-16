@@ -1,8 +1,8 @@
 
 <template>
-<div v-if="announcements">
-    <div class="card w-50 text-light" v-for="(data, index) in announcements" :key="index">
-        <div class="container py-2 text-center">
+<div v-if="announcements" class="d-flex flex-row gap-3">
+    <div class="card w-50 text-dark bg-light" v-for="(data, index) in announcements" :key="index">
+        <div class="container py-2 ">
             <i class="bi bi-megaphone fs-1"></i>
             <h5 class="card-title">{{ data.title }}</h5>
         </div>
@@ -14,9 +14,8 @@
                 <strong>Start Date:</strong> <span>{{ data.start_date }}</span><br>
                 <strong>End Date:</strong> <span>{{ data.end_date }}</span>
             </p>
-            <p class="card-text">
-                <strong>Status:</strong> <span class="badge badge-success">{{ data.is_active }}</span>
-            </p>
+               <div class="card-text" v-if="data.is_active"> <strong>Status:</strong> <span class="bg-success text-light px-3 py-2 rounded">Active</span></div>
+               <div class="card-text" v-if="!data.is_active"> <strong>Status:</strong> <span class="bg-warning text-light px-3 py-2 rounded">Not Active</span></div>
         </div>
         <div class="container py-2 text-muted">
             Created at: <small>{{ formatDate(data.created_at) }}</small>
@@ -45,7 +44,7 @@ export default{
 </script>
 <style lang="css" scoped>
 .card {
-    border: none;
+    border: 2px solid rgba(0,0,0,.2);
     background: rgb(243, 129, 129);
 }
 </style>

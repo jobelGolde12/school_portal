@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AnnouncementModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class AnnouncementController extends Controller
@@ -15,7 +16,7 @@ class AnnouncementController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'is_active' => 'required|boolean',
-            'created_by' => 'required|integer|min:0|max:18446744073709551615'
+            'created_by' => 'integer|min:0|max:18446744073709551615'
         ]);
       
        $create = AnnouncementModel::create($announcement);
@@ -33,7 +34,6 @@ class AnnouncementController extends Controller
         // ];
         return Inertia::render('Announcement', [
             'announcement' => AnnouncementModel::all(),
-            // 'data' => $data,
         ]);
     }
 }

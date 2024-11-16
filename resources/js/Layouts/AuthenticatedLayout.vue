@@ -40,7 +40,7 @@ const showingNavigationDropdown = ref(false);
               >
             </li>
             <li class="nav-item">
-              <Link :href="route('logout')" method="post" as="button" class="nav-link text-dark ms-0 ps-3">
+              <Link :href="route('logout')" method="post" as="button" class="nav-link ms-0 ps-3 logout">
                <i class="bi bi-box-arrow-left"></i> Logout
             </Link>
             </li>
@@ -122,5 +122,13 @@ const showingNavigationDropdown = ref(false);
   width: 80%;
   height: 120%;
   overflow-y: scroll;
+}
+.logout{
+  position: absolute;
+  bottom: 0;
+  color: #333;
+}
+.logout:hover{
+  color: red;
 }
 </style>

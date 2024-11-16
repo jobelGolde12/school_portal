@@ -5,12 +5,19 @@ import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
 
 const announcement = defineProps({
-    announcement: Object,
-    default: () => {}
+    announcement:{
+        type: Object,
+        default: () => {}
+    } ,
+    allUsers: {
+        type: Object,
+        default: () => {}
+    }
 });
 // const fetchAnnouncement = () =>{
 //     this.$inertia.get(this.announcement.next_page_url)
 // }
+console.log('users = ' + JSON.stringify(announcement.allUsers))
 const user = usePage().props.auth.user;
 
 const form = useForm({
@@ -22,8 +29,7 @@ const passForm = {
     'name': form.name,
     'type': form.type
 }
-console.log('this is the announcement from dashboard - ' + JSON.stringify(announcement));
-console.log('form data = ' + form.type)
+
 // return{form}
 </script>
 
@@ -41,6 +47,7 @@ console.log('form data = ' + form.type)
         <Link :href="route('announcement.index')" class="btn btn-success"><i class="bi bi-plus"></i> New announcement</Link>
     </div>
     <div>
+     
       
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="container mt-5">
@@ -50,3 +57,6 @@ console.log('form data = ' + form.type)
     </div>
 </AdminLayout>
 </template>
+<style scoped>
+
+</style>

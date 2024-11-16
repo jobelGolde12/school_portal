@@ -1,21 +1,21 @@
 
 <script setup>
 import { useForm, Head , Link} from '@inertiajs/vue3';
-const userData = defineProps({
-  user: Object
-});
+// import { defineProps } from 'vue';
+// const userData = defineProps({
+//   user: Object,
+//   default: () => {}
+// });
  const formData = useForm({
          title: '',
         content: '',
         start_date: '',
         end_date: '',
         is_active: true,
-        created_by: userData.name,
  })
  const submit = () =>{
     formData.post(route('announcement.store'));
  }
- console.log("user from announcement + " + userData.name)
 </script>
 <!-- <script>
 import { Head, Link } from '@inertiajs/vue3';
