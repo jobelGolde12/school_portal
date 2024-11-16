@@ -19,14 +19,21 @@ class AnnouncementController extends Controller
         ]);
       
        $create = AnnouncementModel::create($announcement);
-       $data = [
-        'name' => $create->user->name,
-        'type' => $create->user->type
-    ];
-    return response()->json(['announcement created' => $data]);
+    //    $data = [
+    //     'name' => $create->user->name,
+    //     'type' => $create->user->type
+    // ];
+  
     }
 
     public function index(){
-        return Inertia::render('Announcement');
+        // $data = [
+        //     'name' => AnnouncementModel::all()->user->name,
+        //     'type' => AnnouncementModel::all()->user->type
+        // ];
+        return Inertia::render('Announcement', [
+            'announcement' => AnnouncementModel::all(),
+            // 'data' => $data,
+        ]);
     }
 }

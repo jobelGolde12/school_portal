@@ -1,16 +1,26 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import Announcement from '@/Components/Announcement.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
 
 const announcement = defineProps({
-    announcement:{
-        type: Array,
-        default: () => []
-    }
+    announcement: Object,
+    default: () => {}
 });
-console.log(announcement)
+// const fetchAnnouncement = () =>{
+//     this.$inertia.get(this.announcement.next_page_url)
+// }
+const user = usePage().props.auth.user;
+
+const form = useForm({
+    name: user.name,
+    email: user.email,
+    type: user.type
+});
+console.log('this is the announcement from dashboard - ' + JSON.stringify(announcement));
+console.log('form data = ' + form.name)
+// return{form}
 </script>
 
 <template>
@@ -27,9 +37,10 @@ console.log(announcement)
         <Link :href="route('announcement.index')" class="btn btn-success"><i class="bi bi-plus"></i> New announcement</Link>
     </div>
     <div>
+      
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="container mt-5">
-               <Announcement :announcement="announcement"/>
+               <Announcement :announcement="announcement" :user="form"/>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AnnouncementModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -15,7 +16,7 @@ class DashboardController extends Controller
                 return Inertia::render('AdminDashboard'); 
             }
             return Inertia::render('Dashboard', [
-                'announcement' => $announcement
+                'announcement' => $announcement,
             ]);
     }
 }

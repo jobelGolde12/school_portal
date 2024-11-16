@@ -1,19 +1,46 @@
 
-<script setup>
+<!-- <script setup>
 import { useForm, Head , Link} from '@inertiajs/vue3';
+const userData = defineProps({
+  user: Object
+});
  const formData = useForm({
-    title: '',
+         title: '',
+        content: '',
+        start_date: '',
+        end_date: '',
+        is_active: true,
+        created_by: userData.name,
+ })
+ const submit = () =>{
+    formData.post(route('announcement.store'));
+ }
+ console.log("user from announcement + " = userData.name)
+</script> -->
+<script>
+import { Head, Link } from '@inertiajs/vue3';
+export default{
+  data(){
+    return{
+      formData: {
+         title: '',
         content: '',
         start_date: '',
         end_date: '',
         is_active: true,
         created_by: user.name,
- })
- const submit = () =>{
-    formData.post(route('announcement.store'));
  }
- const user = usePage().props.auth.user;
+    }
+  },
+  props: ['user'],
+  methods: {
+    submit(){
+      formData.post(route('announcement.store'));
+    }
+  }
+}
 </script>
+
 <template>
     <Head title="create announcement" />
     <h1 class="text-dark fw-light text-center">Create announcement</h1>
@@ -89,6 +116,7 @@ import { useForm, Head , Link} from '@inertiajs/vue3';
     </form>
   </div>
 </template>
+
 <style lang="css" scoped>
     
 </style>
