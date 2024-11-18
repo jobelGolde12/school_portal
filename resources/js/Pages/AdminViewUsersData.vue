@@ -56,13 +56,33 @@ const searchUser = () => {
                     <td>{{ data.email }}</td>
                     <td>
                         <button class="btn btn-primary me-3"><i class="bi bi-pencil"></i></button>
-                        <button class="btn btn-warning"><i class="bi bi-trash"></i></button>
+                        <button class="btn btn-warning"><i class="bi bi-trash" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></button>
                     </td>
                 </tr>
             </tbody>
         </div>
     </div>
    </AdminLayout>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body d-flex flex-row gap-1">
+                    <div>
+                        Are you sure you want to delete selected user? this proccess can't be undo.
+                    </div>
+                    <div class="d-flex flex-row gap-1">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="deleteAnnouncement">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </template>
 <style lang="css" scoped>
     

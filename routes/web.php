@@ -38,6 +38,7 @@ Route::get('/aboutView', function (){
 
 Route::post('/announcement', [AnnouncementController::class, 'create'])->name('announcement.store');
 Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index');
+Route::delete('/announcement/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');
 
 
 

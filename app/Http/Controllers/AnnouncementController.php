@@ -36,4 +36,10 @@ class AnnouncementController extends Controller
             'announcement' => AnnouncementModel::all(),
         ]);
     }
+    public function destroy($id){
+        $announcement = AnnouncementModel::findOrFail($id);
+        $announcement->delete();
+
+        return redirect()->back()->with('success', 'deleted successfully...');
+    }
 }
