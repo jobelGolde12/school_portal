@@ -43,7 +43,8 @@ const passForm = {
         </h2>
     </template>
 
-    <div class="container-fluid d-flex justify-content-end mt-5 pt-4">
+    <div class="container-fluid d-flex justify-content-between mt-5 pt-4 align-items-center">
+        <h1 class="text-dark fw-light">Announcements</h1>
         <Link :href="route('announcement.index')" class="btn btn-success"><i class="bi bi-plus"></i> New announcement</Link>
     </div>
     <div>

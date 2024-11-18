@@ -16,9 +16,9 @@ const showingNavigationDropdown = ref(false);
       <div
         class="dashboard-container d-flex flex-row justify-content-between align-items-center"
       >
-        <div class="sidebar bg-light ps-2">
+        <div class="sidebar ps-2">
           <div class="logo">
-            <i class="bi bi-bar-chart-line-fill"></i> Dashboard
+            <i class="bi bi-bar-chart-line-fill"></i> User Dashboard
           </div>
 
           <div class="container d-flex justify-content-center align-items-">
@@ -35,7 +35,7 @@ const showingNavigationDropdown = ref(false);
               >
             </li>
             <li class="nav-item">
-              <Link :href="route('viewUserData')" class="nav-link"
+              <Link :href="route('viewUsersData')" class="nav-link"
                 ><i class="bi bi-list-check"></i> My data</Link
               >
             </li>
@@ -64,6 +64,7 @@ const showingNavigationDropdown = ref(false);
   width: 20%;
   position: relative;
   padding-top: 20px;
+  background: rgba(0,0,0,.1);
 }
 .sidebar .logo {
   font-size: 24px;

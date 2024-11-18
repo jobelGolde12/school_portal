@@ -34,6 +34,7 @@ const submit = () => {
     position: absolute;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 .google{
     position: relative;
@@ -46,16 +47,26 @@ const submit = () => {
     bottom: 3%;
     left: 3%;
 }
+.image-container{
+    position: relative;
+    width: 100%;
+    height: 90%;
+}
+.image-container img{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 </style>
 
 <template>
-   <div class="main-container bg-light">
-    
-    <GuestLayout>   
+   <div class="main-container row bg-light">
+    <div class="col-12 col-lg-6">
+        <GuestLayout>   
         <Head title="Log in" />
 
         <form @submit.prevent="submit">
-            <h3 class="text-dark text-center">Login</h3>
+            <h3 class="text-dark text-center">Welcome Back!</h3>
             <div>
                 <InputLabel for="email" value="Email" />
 
@@ -106,7 +117,7 @@ const submit = () => {
                 </Link>
 
                 <PrimaryButton
-                    class="w-100 d-block mt-2"
+                    class="w-100 d-block mt-2 btn btn-success"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
@@ -114,10 +125,18 @@ const submit = () => {
                 </PrimaryButton>
 
                    
-                <p class="text-dark fw-light mt-3 text-center">Didn't have an account? | <Link :href="route('register')"> Signup </Link></p>
+                <p class="text-dark fw-light text-center">Didn't have an account? | <Link :href="route('register')"> Signup </Link></p>
             </div>
         </form>
     </GuestLayout>
+    </div>
+
+    <div class="col-12 col-lg-6 bg-light d-flex flex-row justify-content-center align-items-center">
+        <div class="container image-container">
+            <img src="../../../images/login.svg" alt="">
+            </div>
+        </div>
+   
    </div>
 </template>
 

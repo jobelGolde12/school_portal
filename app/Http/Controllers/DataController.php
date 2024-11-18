@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserDataModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class DataController extends Controller
 {
     public function index(){
-        $data = UserDataModel::all();
-        return Inertia::render('ViewUserData', ['data' => $data]);
+        $data = User::all();
+        return Inertia::render('AdminViewUsersData', ['users' => $data]);
+    }
+    public function edit(){
+        
     }
 }

@@ -20,9 +20,28 @@ const submit = () => {
     });
 };
 </script>
-
+<style scoped>
+.main-container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+.image-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.image-container img{
+    position: relative;
+    width: 100%;
+    height: 110%;
+}
+</style>
 <template>
-    <GuestLayout>
+    <div class="main-container row bg-light">
+        <div class="col-12 col-lg-6 bg-light">
+            <GuestLayout>
         <Head title="Register" />
 
         <form @submit.prevent="submit">
@@ -94,22 +113,31 @@ const submit = () => {
                 />
             </div>
 
-            <div class="mt-4 flex items-center justify-end">
-                <Link
-                    :href="route('login')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Already registered?
-                </Link>
-
+            <div class="mt-4 d-flex flex-column ps-0 ms-0">
                 <PrimaryButton
-                    class="ms-4"
+                    class=" w-100 btn btn-success"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
                     Register
                 </PrimaryButton>
+                <p class="text-dark text-center">Aready have an account? | 
+                    <Link
+                    :href="route('login')"
+                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                    Login
+                </Link>
+                    </p>
             </div>
         </form>
     </GuestLayout>
+        </div>
+
+        <div class="col-12 col-lg-6 bg-light d-flex flex-row justify-content-center align-items-center">
+        <div class="container image-container">
+            <img src="../../../images/register.svg" alt="">
+            </div>
+        </div>
+    </div>
 </template>

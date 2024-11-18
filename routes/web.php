@@ -20,14 +20,20 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/viewUserData', [DataController::class , 'index'])->middleware(['auth', 'verified'])->name('viewUserData');
-
+Route::get('/adminViewUsersData', [DataController::class , 'index'])->name('AdminViewUsersData');
+Route::get('/viewUsersData', function (){
+        return Inertia::render('ViewUserData');
+})->name('viewUsersData');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Route::get('/profile', [ProfileController::class, 'editAsAdmin'])->name('profile.editAsAdmin');
+
+
 Route::post('/announcement', [AnnouncementController::class, 'create'])->name('announcement.store');
 Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index');
 
