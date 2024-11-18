@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->string('email')->unique();
             $table->enum('enrollment_status', ['enrolled', 'graduate', 'withdrawn']);
-            $table->decimal('gpa', 3, 2)->nullable(); // Example: 3.50
+            $table->decimal('gpa', 3, 2)->nullable(); // Example sadi: 3.50
             $table->json('subjects_enrolled')->nullable(); // Store as JSON for flexibility
             $table->json('grades_by_subject')->nullable(); // Store as JSON for each subject's grade
             $table->timestamps();

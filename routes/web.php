@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/adminViewUsersData', [DataController::class , 'index'])->name('AdminViewUsersData');
+Route::delete('/adminDeleteUser/{id}',[DataController::class, 'destroy'])->name('adminDeleteUser.destroy');
 Route::get('/viewUsersData', function (){
         return Inertia::render('ViewUserData');
 })->name('viewUsersData');

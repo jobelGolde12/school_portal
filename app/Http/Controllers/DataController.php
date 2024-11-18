@@ -15,4 +15,9 @@ class DataController extends Controller
     public function edit(){
         
     }
+    public function destroy($id){
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->back()->with('success','user deleted');
+    }
 }
