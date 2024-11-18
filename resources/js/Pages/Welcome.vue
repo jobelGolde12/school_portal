@@ -33,7 +33,7 @@ function handleImageError() {
     <div class="navbar d-flex flex-row justify-content-between align-items-center px-3 bg-light">
             <div class="logo"><h4 class="text-dark">School Portal</h4></div>
             <div class="links d-none d-lg-flex flex-row gap-4 align-items-center">
-                    <a href="#about" class="text-dark text-decoration-none">About</a>
+                    <Link :href="route('aboutView')" class="text-dark text-decoration-none">About</Link>
                     <!-- <Link :href="route('contactPage')" class="text-dark text-decoration-none">Contact</Link> -->
                     <Link :href="route('login')" class="text-dark text-decoration-none">Login</Link>
                     <Link :href="route('register')" class=" text-decoration-none bg-dark text-light px-2 py-1 signup-link">Signup</Link>

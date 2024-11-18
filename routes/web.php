@@ -32,7 +32,9 @@ Route::middleware('auth')->group(function () {
 });
 
 // Route::get('/profile', [ProfileController::class, 'editAsAdmin'])->name('profile.editAsAdmin');
-
+Route::get('/aboutView', function (){
+    return Inertia::render('AboutView');
+})->name('aboutView');
 
 Route::post('/announcement', [AnnouncementController::class, 'create'])->name('announcement.store');
 Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index');

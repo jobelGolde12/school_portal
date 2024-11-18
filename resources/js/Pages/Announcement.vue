@@ -1,48 +1,40 @@
 
 <script setup>
-import { useForm, Head , Link} from '@inertiajs/vue3';
+import { useForm, Head , Link, usePage} from '@inertiajs/vue3';
+import { ref } from 'vue';
 // import { defineProps } from 'vue';
 // const userData = defineProps({
 //   user: Object,
 //   default: () => {}
 // });
+const user = usePage().props.auth.user;
+const userId = user.id;
  const formData = useForm({
          title: '',
         content: '',
         start_date: '',
         end_date: '',
         is_active: true,
+        created_by: userId
  })
  const submit = () =>{
-    formData.post(route('announcement.store'));
+    formData.post(route('announcement.store'), {
+      onSuccess : () =>{
+        document.querySelector('.alert').style.display = 'block';
+      },
+      onError : () => {
+        alert('An error occured')
+      }
+    });
  }
 </script>
-<!-- <script>
-import { Head, Link } from '@inertiajs/vue3';
-export default{
-  data(){
-    return{
-      formData: {
-         title: '',
-        content: '',
-        start_date: '',
-        end_date: '',
-        is_active: true,
-        created_by: user.name,
- }
-    }
-  },
-  props: ['user'],
-  methods: {
-    submit(){
-      formData.post(route('announcement.store'));
-    }
-  }
-}
-</script> -->
-
 <template>
     <Head title="create announcement" />
+<div class="main-container">
+  
+  <div class="alert alert-info" role="alert">
+  <i class="bi bi-info-circle"></i> Announcement created!
+</div>
     <h1 class="text-dark fw-light text-center">Create announcement</h1>
      <div class="container mt-4">
     <form @submit.prevent="submit">
@@ -115,8 +107,34 @@ export default{
       <Link :href="route('dashboard')" class="btn btn-dark ms-2">Go back</Link>
     </form>
   </div>
+</div>
 </template>
 
 <style lang="css" scoped>
-    
+    .main-container{
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .alert{
+      position: absolute;
+      right: -100%;
+      animation: animateAllert 5s ease;
+      display: none;
+    }
+    @keyframes animateAllert{
+      0%{
+        right: -100%;
+      }
+      25%{
+        right: 2%;
+      }
+      75%{
+        right: 2%;
+      }
+      0%{
+        right: -100%;
+      }
+    }
 </style>
