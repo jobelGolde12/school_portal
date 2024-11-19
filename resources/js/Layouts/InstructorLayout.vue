@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
 
-const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
@@ -13,7 +12,7 @@ const showingNavigationDropdown = ref(false);
       >
         <div class="sidebar ps-2">
           <div class="logo">
-            <i class="bi bi-bar-chart-line-fill"></i> Admin Dashboard
+            <i class="bi bi-bar-chart-line-fill"></i> Instructor Dashboard
           </div>
 
           <div class="container d-flex justify-content-center align-items-">
@@ -35,7 +34,6 @@ const showingNavigationDropdown = ref(false);
                 ><i class="bi bi-people"></i> Users</Link
               >
             </li>
-    
             <li class="nav-item">
               <Link :href="route('logout')" method="post" as="button" class="nav-link ms-0 ps-3 logout" >
                 <i class="bi bi-box-arrow-left"></i> Logout

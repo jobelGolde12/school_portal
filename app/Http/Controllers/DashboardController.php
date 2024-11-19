@@ -18,6 +18,10 @@ class DashboardController extends Controller
                 'announcement' => $announcement,
                 'allUsers' => $users
             ]); 
+            }else if (Auth::check() && Auth::user()->type === 'instructor') { 
+                return Inertia::render('instructor/InstructorDashboard', [
+                'announcement' => $announcement,
+            ]); 
             }
             return Inertia::render('Dashboard', [
                 'announcement' => $announcement,

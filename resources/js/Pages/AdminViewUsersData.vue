@@ -75,7 +75,7 @@ onMounted(() => {
                     <td>{{ data.name }} <span class="text-light bg-success rounded px-1" v-if="data.type === 'admin'">Admin</span></td>
                     <td>{{ data.email }}</td>
                     <td>
-                        <button class="btn btn-primary me-3" :class="{'disabled' : data.type === 'admin'}"><i class="bi bi-pencil"></i></button>
+                        <!-- <Link :href="route('/')" class="btn btn-primary me-3" :class="{'disabled' : data.type === 'admin'}"><i class="bi bi-pencil"></i></Link> -->
                         <button class="btn btn-warning" :class="{'disabled' : data.type === 'admin'}" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getIdToDelete(data.id)"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>
