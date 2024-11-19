@@ -17,6 +17,7 @@ const userId = user.id;
         is_active: true,
         created_by: userId
  })
+ console.log("The id is => " + userId)
  const submit = () =>{
     formData.post(route('announcement.store'), {
       onSuccess : () =>{

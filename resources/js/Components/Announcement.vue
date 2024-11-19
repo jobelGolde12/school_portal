@@ -7,7 +7,7 @@
                 <h5 class="card-title">{{ data.title }}</h5>
             </div>
             <div>
-                <i class="bi bi-trash action fs-4" v-if="data.created_by === 2" @click="getIdToDelete(data.id)" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                <i class="bi bi-trash action fs-4" v-if="data.created_by === 2 || data.created_by === 5" @click="getIdToDelete(data.id)" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
             </div>
         </div>
         <div class="card-body">

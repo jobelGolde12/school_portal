@@ -21,7 +21,7 @@ import { Link } from "@inertiajs/vue3";
 
           <ul class="nav flex-column mt-3">
             <li class="nav-item">
-              <Link :href="route('dashboard')" class="nav-link" :class="{'active-link' : $page.url === route('dashboard')}"><i class="bi bi-house"></i> Home</Link>
+              <Link :href="route('dashboard')" class="nav-link" :class="{'active-link' : $page.url === route().current('dashboard')}"><i class="bi bi-house"></i> Home</Link>
             </li>
             <!-- <li class="nav-item">
               <Link :href="route('profile.editAsAdmin')" class="nav-link"
@@ -29,11 +29,9 @@ import { Link } from "@inertiajs/vue3";
               >
             </li> -->
             <li class="nav-item">
-              
-              <Link  class="nav-link" :href="route('AdminViewUsersData')"
-                ><i class="bi bi-people"></i> Users</Link
-              >
+              <Link :href="route('dashboard')" class="nav-link" :class="{'active-link' : $page.url === route().current('dashboard')}"><i class="bi bi-house"></i> Subjects</Link>
             </li>
+
             <li class="nav-item">
               <Link :href="route('logout')" method="post" as="button" class="nav-link ms-0 ps-3 logout" >
                 <i class="bi bi-box-arrow-left"></i> Logout
