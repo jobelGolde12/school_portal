@@ -1,6 +1,6 @@
 <template>
 <div v-if="announcements" class="main-container d-flex flex-row gap-3">
-    <div class="card w-50 text-dark bg-light" v-for="(data, index) in announcements" :key="index">
+    <div class="card w-50 text-dark bg-light" v-for="(data, index) in announcementArray" :key="index">
         <div class="container py-2 d-flex justify-content-between align-items-center">
             <div>
                 <i class="bi bi-megaphone fs-1"></i>
@@ -57,7 +57,8 @@ import { Inertia } from '@inertiajs/inertia';
 export default {
     data() {
         return {
-            IdToDelete: ''
+            IdToDelete: '',
+            announcementArray: this.announcements.reverse()
         }
     },
     props: ['announcements'],

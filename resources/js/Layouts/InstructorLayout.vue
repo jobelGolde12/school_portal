@@ -29,7 +29,7 @@ import { Link } from "@inertiajs/vue3";
               >
             </li> -->
             <li class="nav-item">
-              <Link :href="route('dashboard')" class="nav-link" :class="{'active-link' : $page.url === route().current('dashboard')}"><i class="bi bi-house"></i> Subjects</Link>
+              <Link :href="route('viewSubjects')" class="nav-link" :class="{'active-link' : $page.url === route().current('viewSubjects')}"><i class="bi bi-house"></i> Subjects</Link>
             </li>
 
             <li class="nav-item">

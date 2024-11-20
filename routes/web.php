@@ -4,6 +4,7 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\SubjectsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,10 @@ Route::post('/announcement', [AnnouncementController::class, 'create'])->name('a
 Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index');
 Route::delete('/announcement/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');
 
-
+// Instructor 
+Route::get('viewSubjects', [SubjectsController::class, 'index'])->name('viewSubjects');
+Route::get('addSubjectRoute', function (){
+    return Inertia::render('instructor/NewSubject');
+})->name('addSubjectRoute');
 
 require __DIR__.'/auth.php';
