@@ -43,9 +43,7 @@ Route::get('/announcement', [AnnouncementController::class, 'index'])->name('ann
 Route::delete('/announcement/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');
 
 // Instructor 
-Route::get('viewSubjects', [SubjectsController::class, 'index'])->name('viewSubjects');
-Route::get('addSubjectRoute', function (){
-    return Inertia::render('instructor/NewSubject');
-})->name('addSubjectRoute');
+Route::get('/viewSubjects', [SubjectsController::class, 'index'])->name('viewSubjects');
+Route::get('/addSubjectRoute', [SubjectsController::class, 'goToAddSub'])->name('addSubjectRoute');
 
 require __DIR__.'/auth.php';

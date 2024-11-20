@@ -1,13 +1,15 @@
 <script setup>
-import { defineProps, onMounted, ref } from 'vue';
+import { computed, defineProps, onMounted, ref } from 'vue';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
+import { usePage } from '@inertiajs/inertia-vue3';
 const props = defineProps({
     users: {
         type: Object,
-        default: () => Object
+        default: () => ({})
     }
 })
+
 let tableData = ref([])
 let searchInput = ref('')
 const originalData = ref([]);
@@ -60,23 +62,49 @@ onMounted(() => {
             </form>
         </div>
         <p class="text-dark fw-lighter">Total - {{ props.users.length }}</p>
+        <div class="container-fluid d-flex flex-row justify-content-end align-items-center gap-4">
+            <div class="d-flex align-items-center">
+                <div class="dot dot1 bg-success"></div>
+                <div><p class="text-muted">Admin</p></div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="dot dot2 bg-primary"></div>
+                <div><p class="text-muted">Instructor</p></div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="dot dot3 bg-secondary"></div>
+                <div><p class="text-muted">Not Enrolled</p></div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="dot dot4 bg-info"></div>
+                <div><p class="text-muted">Super admin</p></div>
+            </div>
+        </div>
         <div class="table table-striped table-responsive">
             <thead class="thead">
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>email</th>
+                    <th>Email</th>
+                    <th>Type</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody class="t-body">
                 <tr v-for="data in tableData" :key="data.index">
                     <td>{{ data.id }}</td>
-                    <td>{{ data.name }} <span class="text-light bg-success rounded px-1" v-if="data.type === 'admin'">Admin</span></td>
+                    <td> {{ data.name }} </td>
                     <td>{{ data.email }}</td>
                     <td>
+                        <span class="bg-success user-type-color " v-if="data.type === 'admin'"></span>
+                        <span class="bg-primary user-type-color" v-if="data.type === 'instructor'"></span>
+                        <span class="bg-secondary user-type-color" v-if="data.type === 'user'"></span>
+                        <span class="bg-info user-type-color" v-if="data.type === 'superAdmin'"></span>
+
+                    </td>
+                    <td>
                         <!-- <Link :href="route('/')" class="btn btn-primary me-3" :class="{'disabled' : data.type === 'admin'}"><i class="bi bi-pencil"></i></Link> -->
-                        <button class="btn btn-warning" :class="{'disabled' : data.type === 'admin'}" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getIdToDelete(data.id)"><i class="bi bi-trash"></i></button>
+                        <button class="btn btn-warning" :class="{'disabled' : data.type === 'admin' || data.type === 'superAdmin'}" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getIdToDelete(data.id)"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
@@ -105,5 +133,19 @@ onMounted(() => {
 
 </template>
 <style lang="css" scoped>
-    
+    .container-fluid div .dot{
+        position: relative;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        transform: translateY(-80%);
+        margin-right: .5rem;
+    }
+    td .user-type-color{
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: block;
+    }
 </style>
