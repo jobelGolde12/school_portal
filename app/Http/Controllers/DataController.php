@@ -20,4 +20,13 @@ class DataController extends Controller
         $user->delete();
         return redirect()->back()->with('success','user deleted');
     }
+    public function RouteTocreate(){
+    return Inertia::render('Create');
+    }
+
+    public function create(Request $request){
+        $request->validate([
+            //
+        ]);
+    }
 }

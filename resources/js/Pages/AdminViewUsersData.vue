@@ -103,7 +103,7 @@ onMounted(() => {
 
                     </td>
                     <td>
-                        <!-- <Link :href="route('/')" class="btn btn-primary me-3" :class="{'disabled' : data.type === 'admin'}"><i class="bi bi-pencil"></i></Link> -->
+                        <Link :href="route('adminCreate')" class="btn btn-primary me-3" :class="{'disabled' : data.type === 'admin'}"><i class="bi bi-pencil"></i></Link>
                         <button class="btn btn-warning" :class="{'disabled' : data.type === 'admin' || data.type === 'superAdmin'}" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getIdToDelete(data.id)"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>
