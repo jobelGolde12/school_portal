@@ -1,7 +1,7 @@
 <script setup>
-import { reactive } from 'vue';
-import { Link } from '@inertiajs/vue3';
-const form = reactive({
+import { Link, useForm } from '@inertiajs/vue3';
+
+const form = useForm({
   first_name: "",
   middle_name: "",
   last_name: "",
@@ -9,10 +9,15 @@ const form = reactive({
   gender: "",
   phone_number: "",
   email: "",
+  password: "",
 });
 
 const submitForm = () => {
-  console.log("Form Submitted", form);
+  console.log("data is " + JSON.stringify(form))
+  form.post(route('admin.addInstructor') ,{
+  onSuccess : () => alert("Data post successfully"),
+  onError : (errors) => alert("Error => " + JSON.stringify(errors))
+  })
   
 };
 </script>
@@ -29,7 +34,7 @@ const submitForm = () => {
         <!-- Middle Name -->
         <div class="col-md-4">
           <label for="middleName" class="form-label">Middle Name</label>
-          <input type="text" id="middleName" class="form-control" v-model="form.middle_name" />
+          <input type="text" id="middleName" class="form-control" v-model="form.middle_name" placeholder="Optional"/>
         </div>
   
         <!-- Last Name -->
@@ -58,13 +63,19 @@ const submitForm = () => {
         <!-- Phone Number -->
         <div class="col-md-6">
           <label for="phoneNumber" class="form-label">Phone Number</label>
-          <input type="number" id="phoneNumber" class="form-control" v-model="form.phone_number" />
+          <input type="string" id="phoneNumber" class="form-control" v-model="form.phone_number" />
         </div>
   
         <!-- Email -->
         <div class="col-md-6">
           <label for="email" class="form-label">Email</label>
           <input type="email" id="email" class="form-control" v-model="form.email" required />
+        </div>
+  
+         <!-- Password -->
+         <div class="col-md-6">
+          <label for="password" class="form-label">Password</label>
+          <input type="text" id="password" class="form-control" v-model="form.password" required />
         </div>
   
        

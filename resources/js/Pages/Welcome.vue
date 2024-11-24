@@ -46,7 +46,7 @@ function handleImageError() {
 
     <section id="hero-content" class=" d-flex flex-column align-items-center  bg-light text-dark text-center mt-0 pt-5">
                         <h1 class="text-dark text-center pt-5 mx-5">
-                            Stay informed, access resources, and succeed with <span class="text-success">Bonga</span> online portal. 
+                            Stay informed, access resources, and succeed with <span class="text-success">Bonga High School</span> online portal. 
                         </h1>
 
                         <div class="action-button container d-flex flex-row align-items-center justify-content-center gap-5 pt-3 px-5">

@@ -80,7 +80,7 @@ onMounted(() => {
                 <div><p class="text-muted">Super admin</p></div>
             </div>
         </div>
-        <div class="table table-striped table-responsive">
+        <div class="table table-striped table-responsive pb-5">
             <thead class="thead">
                 <tr>
                     <th>Id</th>

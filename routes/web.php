@@ -29,7 +29,7 @@ Route::get('/viewUsersData', function (){
         return Inertia::render('ViewUserData');
 })->name('viewUsersData');
 Route::get('/adminCreate', [DataController::class, 'RouteTocreate'])->name('adminCreate');
-Route::post('/admin', [DataController::class, 'create'])->name('addData');
+Route::post('/adminAddInstructor', [DataController::class, 'createInstructor'])->name('admin.addInstructor');
 
 
 Route::middleware('auth')->group(function () {
