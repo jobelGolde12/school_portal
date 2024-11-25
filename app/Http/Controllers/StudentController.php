@@ -19,8 +19,8 @@ class StudentController extends Controller
              'email' => 'required|email|unique:users,email',
              'date_of_birth' => 'required|date',
              'password' => 'required|string|max:255|min:8',
-             'student_year' => 'nullable|string|max::255',
-             'status' => 'required|string|max:255',
+             'student_year' => 'required|string|max:255',
+             'enrollment_status' => 'required|string|max:255',
              'gpa' => 'required|string|max:255',
          ]);
         $user = User::create([
@@ -33,18 +33,19 @@ class StudentController extends Controller
  
          StudentInfo::create([
              'id' => $user->id,
-             'first_name' => $validate['first_name'],
-             'middle_name' => $validate['middle_name'],
-             'last_name' => $validate['last_name'],
-             'email' => $validate['email'],
              'date_of_birth' => $validate['date_of_birth'],
              'phone_number' => $validate['phone_number'],
              'gender' => $validate['gender'],
-             'student_year' => $validate['student_year'] ?? null,
+             'student_year' => $validate['student_year'],
              'gpa' => $validate['gpa'],
-             'enrollment_status' => $validate['status'],
+             'enrollment_status' => $validate['enrollment_status'],
  
          ]);
          // return redirect()->route()->with('Message', 'Created successfully');
      }
 }
+
+// 'first_name' => $validate['first_name'],
+// 'middle_name' => $validate['middle_name'],
+// 'last_name' => $validate['last_name'],
+// 'email' => $validate['email'],

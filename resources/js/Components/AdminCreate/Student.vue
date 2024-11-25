@@ -10,8 +10,9 @@ const form = useForm({
   phone_number: "",
   email: "",
   password: "",
-  status: "",
+  enrollment_status: "",
   gpa: "",
+  student_year: ""
 });
 
 const submitForm = () => {
@@ -64,7 +65,7 @@ const submitForm = () => {
           <!-- Status -->
           <div class="col-md-6">
           <label for="gender" class="form-label">Enrollment status</label>
-          <select id="gender" class="form-select" v-model="form.status" required>
+          <select id="gender" class="form-select" v-model="form.enrollment_status" required>
             <option value="" disabled>Select status</option>
             <option value="male">Enrolled</option>
             <option value="female">Graduate</option>
@@ -82,6 +83,12 @@ const submitForm = () => {
         <div class="col-md-6">
           <label for="email" class="form-label">Email</label>
           <input type="email" id="email" class="form-control" v-model="form.email" required />
+        </div>
+
+         <!-- Student year -->
+         <div class="col-md-6">
+          <label for="year" class="form-label">Student year</label>
+          <input type="text" id="year" class="form-control" v-model="form.student_year" required />
         </div>
 
   
