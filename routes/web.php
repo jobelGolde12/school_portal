@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Auth\User;
@@ -29,7 +31,8 @@ Route::get('/viewUsersData', function (){
         return Inertia::render('ViewUserData');
 })->name('viewUsersData');
 Route::get('/adminCreate', [DataController::class, 'RouteTocreate'])->name('adminCreate');
-Route::post('/adminAddInstructor', [DataController::class, 'createInstructor'])->name('admin.addInstructor');
+Route::post('/adminAddInstructor', [InstructorController::class, 'create'])->name('admin.addInstructor');
+Route::post('/adminAddStudent', [StudentController::class, 'create'])->name('admin.addStudent');
 
 
 Route::middleware('auth')->group(function () {

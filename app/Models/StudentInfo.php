@@ -3,19 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-class UserInfo extends Model
+
+class StudentInfo extends Model
 {
-    protected $table = 'user_info';
+    protected $table = 'students_info';
     protected $fillable = [
         'date_of_birth',
         'phone_number',
         'gender',
         'student_year',
-        'status',
+        'enrollment_status',
         'gpa'
     ];
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
 }

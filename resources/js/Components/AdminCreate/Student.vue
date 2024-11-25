@@ -1,36 +1,30 @@
 <script setup>
-import { reactive } from 'vue';
-const form = reactive({
+import { Link, useForm } from '@inertiajs/vue3';
+
+const form = useForm({
   first_name: "",
   middle_name: "",
   last_name: "",
   date_of_birth: "",
-  gender: "",
+  gender: "", 
   phone_number: "",
   email: "",
-  enrollment_status: "",
-  gpa: null,
-  subjects_enrolled: "",
-  grades_by_subject: ""
+  password: "",
+  status: "",
+  gpa: "",
 });
 
 const submitForm = () => {
-  console.log("Form Submitted", form);
-  // Convert JSON strings into objects for backend handling if needed
-  try {
-    form.subjects_enrolled = form.subjects_enrolled.split(",").map(subject => subject.trim());
-    form.grades_by_subject = JSON.parse(form.grades_by_subject);
-  } catch (error) {
-    console.error("Error parsing JSON fields:", error);
-  }
-
-  // Simulate API call
-  alert("Form Submitted! Check console for data.");
+  form.post(route('admin.addStudent') ,{
+  onSuccess : () => alert("Data post successfully"),
+  onError : (errors) => alert("Error => " + JSON.stringify(errors))
+  })
+  
 };
 </script>
 <template>
      <div class="instructor-container mt-1">
-      <h1 class="text-center">Create Instructor</h1>
+      <h1 class="text-center">Create Student</h1>
       <form @submit.prevent="submitForm" class="row g-3">
         <!-- First Name -->
         <div class="col-md-4">
@@ -41,7 +35,7 @@ const submitForm = () => {
         <!-- Middle Name -->
         <div class="col-md-4">
           <label for="middleName" class="form-label">Middle Name</label>
-          <input type="text" id="middleName" class="form-control" v-model="form.middle_name" />
+          <input type="text" id="middleName" class="form-control" v-model="form.middle_name" placeholder="Optional"/>
         </div>
   
         <!-- Last Name -->
@@ -67,10 +61,21 @@ const submitForm = () => {
           </select>
         </div>
   
+          <!-- Status -->
+          <div class="col-md-6">
+          <label for="gender" class="form-label">Enrollment status</label>
+          <select id="gender" class="form-select" v-model="form.status" required>
+            <option value="" disabled>Select status</option>
+            <option value="male">Enrolled</option>
+            <option value="female">Graduate</option>
+            <option value="other">Withdrawn</option>
+          </select>
+        </div>
+
         <!-- Phone Number -->
         <div class="col-md-6">
           <label for="phoneNumber" class="form-label">Phone Number</label>
-          <input type="tel" id="phoneNumber" class="form-control" v-model="form.phone_number" />
+          <input type="string" id="phoneNumber" class="form-control" v-model="form.phone_number" />
         </div>
   
         <!-- Email -->
@@ -78,39 +83,25 @@ const submitForm = () => {
           <label for="email" class="form-label">Email</label>
           <input type="email" id="email" class="form-control" v-model="form.email" required />
         </div>
+
   
-        <!-- Enrollment Status -->
-        <div class="col-md-6">
-          <label for="enrollmentStatus" class="form-label">Enrollment Status</label>
-          <select id="enrollmentStatus" class="form-select" v-model="form.enrollment_status" required>
-            <option value="" disabled>Select Status</option>
-            <option value="enrolled">Enrolled</option>
-            <option value="graduate">Graduate</option>
-            <option value="withdrawn">Withdrawn</option>
-          </select>
+         <!-- Password -->
+         <div class="col-md-6">
+          <label for="password" class="form-label">Password</label>
+          <input type="text" id="password" class="form-control" v-model="form.password" required />
         </div>
   
-        <!-- GPA -->
-        <div class="col-md-6">
-          <label for="gpa" class="form-label">GPA</label>
-          <input type="number" id="gpa" class="form-control" v-model="form.gpa" step="0.01" min="0" max="4.00" />
+         <!-- GPA -->
+         <div class="col-md-6">
+          <label for="password" class="form-label">GPA</label>
+          <input type="text" id="password" class="form-control" v-model="form.gpa" placeholder="optional"/>
         </div>
-  
-        <!-- Subjects Enrolled -->
-        <div class="col-md-12">
-          <label for="subjectsEnrolled" class="form-label">Subjects Enrolled (Comma Separated)</label>
-          <input type="text" id="subjectsEnrolled" class="form-control" v-model="form.subjects_enrolled" placeholder="e.g., Math, Science, English" />
-        </div>
-  
-        <!-- Grades by Subject -->
-        <div class="col-md-12">
-          <label for="gradesBySubject" class="form-label">Grades by Subject (JSON Format)</label>
-          <textarea id="gradesBySubject" class="form-control" v-model="form.grades_by_subject" rows="3" placeholder='e.g., {"Math": "A", "Science": "B+"}'></textarea>
-        </div>
+       
   
         <!-- Submit Button -->
-        <div class="col-12 text-center">
-          <button type="submit" class="btn btn-dark w-100">Submit</button>
+        <div class="col-12 d-flex gap-2">
+          <button type="submit" class="btn btn-dark">Submit</button>
+          <Link :href="route('adminCreate')" class="btn btn-secondary">Back</Link>
         </div>
       </form>
     </div>
@@ -120,7 +111,7 @@ const submitForm = () => {
 .instructor-container{
     position: absolute;
     width: 100%;
-    height: 120vh;
+    height: 100vh;
 }
     
 </style>
