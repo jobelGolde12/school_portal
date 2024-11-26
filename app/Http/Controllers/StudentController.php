@@ -20,7 +20,7 @@ class StudentController extends Controller
              'date_of_birth' => 'required|date',
              'password' => 'required|string|max:255|min:8',
              'student_year' => 'required|string|max:255',
-             'enrollment_status' => 'required|string|max:255',
+             'enrollment_status' => 'required|string|max:255',    
              'gpa' => 'required|string|max:255',
          ]);
         $user = User::create([

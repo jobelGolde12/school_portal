@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AnnouncementModel;
+use App\Models\StudentInfo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,15 @@ class DashboardController extends Controller
             }else if (Auth::check() && Auth::user()->type === 'instructor') { 
                 return Inertia::render('instructor/InstructorDashboard', [
                 'announcement' => $announcement,
+            ]); 
+            }else if (Auth::check() && Auth::user()->type === 'student') {
+                $studentInfo = StudentInfo::where('id', Auth::id())->first();
+                $userInfo = User::where('id', Auth::id())->first();
+
+                return Inertia::render('student/Student', [
+                'announcement' => $announcement,
+                'studentInfo' => $studentInfo,
+                'userInfo' => $userInfo
             ]); 
             }
             return Inertia::render('Dashboard', [
