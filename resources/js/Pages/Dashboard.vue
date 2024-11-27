@@ -3,12 +3,14 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Announcement from '@/Components/Announcement.vue';
 import { Head } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
+import { usePage } from '@inertiajs/vue3';
 defineProps({
     announcement: {
         type: Array,
         required: true
     }
 })
+const type = usePage().props.auth.user.type;
 </script>
 
 <template>
@@ -28,7 +30,7 @@ defineProps({
             <div class="container mt-5">
                 <h1 class="text-dark fw-lighter mb-2">Announcements</h1>
                 <h1 class="text-dark fw-lighter mb-2" v-if="!announcement">No announcement yet!</h1>
-               <Announcement :announcements="announcement"/>
+               <Announcement :announcements="announcement" :type="type"/>
             </div>
         </div>
     </div>

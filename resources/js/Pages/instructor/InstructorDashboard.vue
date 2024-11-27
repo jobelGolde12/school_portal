@@ -3,12 +3,15 @@ import InstructorLayout from '@/Layouts/InstructorLayout.vue';
 import { Head,Link } from '@inertiajs/vue3';
 import Announcement from '@/Components/Announcement.vue';
 import { defineProps, onMounted, ref } from 'vue';
+import { usePage } from '@inertiajs/vue3';
 defineProps({
     announcement: {
         type: Array,
         default: () => []
     }
 })
+const type = usePage().props.auth.user.type;
+
 </script>
 
 <template>
@@ -24,7 +27,7 @@ defineProps({
       
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="container mt-5">
-               <Announcement :announcements="announcement"/>
+               <Announcement :announcements="announcement" :type="type"/>
             </div>
         </div>
     </div>

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\StudentInfo;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 
 class StudentController extends Controller
 {
@@ -42,6 +44,14 @@ class StudentController extends Controller
  
          ]);
          // return redirect()->route()->with('Message', 'Created successfully');
+     }
+     public function info(){
+        $studentInfo = StudentInfo::where('id', Auth::id())->first();
+        $userInfo = User::where('id', Auth::id())->first();
+        return Inertia::render('student/Info', [
+            'studentInfo' => $studentInfo,
+            'userInfo' => $userInfo
+        ]); 
      }
 }
 

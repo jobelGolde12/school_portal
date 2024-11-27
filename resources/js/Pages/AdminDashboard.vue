@@ -17,20 +17,15 @@ const announcement = defineProps({
 // const fetchAnnouncement = () =>{
 //     this.$inertia.get(this.announcement.next_page_url)
 // }
-console.log('users = ' + JSON.stringify(announcement.allUsers))
-const user = usePage().props.auth.user;
+// console.log('users = ' + JSON.stringify(announcement.allUsers))
 
-const form = useForm({
-    name: user.name,
-    email: user.email,
-    type: user.type
-});
-const passForm = {
-    'name': form.name,
-    'type': form.type
-}
+// const form = useForm({
+//     name: user.name,
+//     email: user.email,
+//     type: user.type
+// });
 
-// return{form}
+const type = usePage().props.auth.user.type;
 </script>
 
 <template>
@@ -52,7 +47,7 @@ const passForm = {
       
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="container mt-5">
-               <Announcement :announcements="announcement.announcement" :user="passForm"/>
+               <Announcement :announcements="announcement.announcement" :type="type"/>
             </div>
         </div>
     </div>

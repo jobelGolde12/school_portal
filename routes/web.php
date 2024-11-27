@@ -54,4 +54,7 @@ Route::delete('/announcement/{id}', [AnnouncementController::class, 'destroy'])-
 Route::get('/viewSubjects', [SubjectsController::class, 'index'])->name('viewSubjects');
 Route::get('/addSubjectRoute', [SubjectsController::class, 'goToAddSub'])->name('addSubjectRoute');
 
+
+// student 
+Route::get('/viewStudentInfo', [StudentController::class, 'info'])->name('info');
 require __DIR__.'/auth.php';

@@ -24,13 +24,10 @@ class DashboardController extends Controller
                 'announcement' => $announcement,
             ]); 
             }else if (Auth::check() && Auth::user()->type === 'student') {
-                $studentInfo = StudentInfo::where('id', Auth::id())->first();
-                $userInfo = User::where('id', Auth::id())->first();
+               
 
                 return Inertia::render('student/Student', [
                 'announcement' => $announcement,
-                'studentInfo' => $studentInfo,
-                'userInfo' => $userInfo
             ]); 
             }
             return Inertia::render('Dashboard', [
