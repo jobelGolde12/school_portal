@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\StudentInfo;
+use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,13 +26,17 @@ class ProfileController extends Controller
         ]);
     }
 
-    // public function editAsAdmin(Request $request): Response
-    // {
-    //     return Inertia::render('Profile/EditAsAdmin', [
-    //         'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-    //         'status' => session('status'),
-    //     ]);
-    // }
+    public function editAsStudent(Request $request): Response
+    {
+        $studentData = StudentInfo::where('id', Auth::id())->first();
+        $studentInTable2 = User::where('id', Auth::id())->first();
+        return Inertia::render('Profile/EditAsStudent', [
+            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'status' => session('status'),
+            'studentData' => $studentData,
+            'table2' => $studentInTable2,
+        ]);
+    }
 
 
     /**

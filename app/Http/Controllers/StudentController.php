@@ -53,6 +53,22 @@ class StudentController extends Controller
             'userInfo' => $userInfo
         ]); 
      }
+
+     public function update(Request $request, $id)
+{
+    $validated = $request->validate([
+        'date_of_birth' => 'required|date',
+        'gender' => 'required|string',
+        'phone_number' => 'nullable|string',
+        'email' => 'required|email|unique:users,email,' . $id,
+    ]);
+
+    $student = StudentInfo::findOrFail($id);
+    $student->update($validated);
+
+    return back()->with('success', 'Student data updated successfully.');
+}
+
 }
 
 // 'first_name' => $validate['first_name'],

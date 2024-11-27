@@ -11,7 +11,7 @@ import { Link } from "@inertiajs/vue3";
         class="dashboard-container bg-light d-flex flex-row justify-content-between align-items-center"
       >
         <div class="sidebar ps-2">
-          <div class="logo">
+          <div class="logo text-light">
             <i class="bi bi-bar-chart-line-fill"></i> Student Dashboard
           </div>
 
@@ -33,8 +33,8 @@ import { Link } from "@inertiajs/vue3";
             </li>
 
             <li class="nav-item">
-              <Link :href="route('profile.edit')" class="nav-link"
-                ><i class="bi bi-people"></i> Profile</Link
+              <Link :href="route('profile.editAsStudent')" class="nav-link"
+                ><i class="bi bi-person"></i> Profile</Link
               >
             </li>
 
@@ -64,8 +64,9 @@ import { Link } from "@inertiajs/vue3";
   width: 20%;
   position: relative;
   padding-top: 20px;
-  background: rgba(0,0,0,.1);
-  /* border-right: 3px solid #28a745; */
+  background-color: #0093E9;
+  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
 }
 .sidebar .logo {
   font-size: 1.2rem;
@@ -75,15 +76,17 @@ import { Link } from "@inertiajs/vue3";
   padding-left: 20px;
 }
 .sidebar a {
-  color: #374151;
+  color: #fff;
   text-decoration: none;
   padding: 10px 20px;
   display: flex;
   align-items: center;
   font-size: 15px;
+  border-radius: 20px 0 0 20px; 
 }
 .sidebar a:hover {
   background-color: #e5e7eb;
+  color: #333;
 }
 .sidebar .active-link {
   background-color: red;

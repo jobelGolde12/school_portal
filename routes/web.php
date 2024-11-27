@@ -57,4 +57,7 @@ Route::get('/addSubjectRoute', [SubjectsController::class, 'goToAddSub'])->name(
 
 // student 
 Route::get('/viewStudentInfo', [StudentController::class, 'info'])->name('info');
+Route::get('/profile', [ProfileController::class, 'editAsStudent'])->name('profile.editAsStudent');
+Route::put('/students/{id}', [StudentController::class, 'update'])->name('student.updateInfo');
+
 require __DIR__.'/auth.php';
