@@ -29,11 +29,11 @@ const showingNavigationDropdown = ref(false);
             <li class="nav-item">
               <Link :href="route('dashboard')" class="nav-link" :class="{'active-link' : $page.url === route('dashboard')}"><i class="bi bi-house"></i> Home</Link>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <Link :href="route('profile.edit')" class="nav-link"
                 ><i class="bi bi-people"></i> Profile</Link
               >
-            </li>
+            </li> -->
             <li class="nav-item">
               <Link :href="route('viewUsersData')" class="nav-link"
                 ><i class="bi bi-list-check"></i> My data</Link

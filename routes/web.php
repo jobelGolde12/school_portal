@@ -28,23 +28,17 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 // Admin 
 Route::get('/adminViewUsersData', [DataController::class , 'index'])->name('AdminViewUsersData');
 Route::delete('/adminDeleteUser/{id}',[DataController::class, 'destroy'])->name('adminDeleteUser.destroy');
-Route::get('/viewUsersData', function (){
-        return Inertia::render('ViewUserData');
-})->name('viewUsersData');
 Route::get('/adminCreate', [DataController::class, 'RouteTocreate'])->name('adminCreate');
-Route::post('/adminAddInstructor', [InstructorController::class, 'create'])->name('admin.addInstructor');
-Route::post('/adminAddStudent', [StudentController::class, 'create'])->name('admin.addStudent');
 
 
 // super admin 
-// Route::get('/superadmin', [SuperAdmin::class , 'index'])->name('superadmin.viewUsersData');
+Route::get('/superadmin', [SuperAdmin::class , 'index'])->name('viewUsersData');
 // Route::delete('/adminDeleteUser/{id}',[DataController::class, 'destroy'])->name('adminDeleteUser.destroy');
-Route::get('/superadmin', function (){
-        return Inertia::render('superadmin/SuAdminViewUsersData');
-})->name('viewUsersData');
 Route::get('/superadmin', [SuperAdmin::class, 'RouteTocreate'])->name('suAdmin.Create');
-// Route::post('/adminAddInstructor', [InstructorController::class, 'create'])->name('admin.addInstructor');
-// Route::post('/adminAddStudent', [StudentController::class, 'create'])->name('admin.addStudent');
+
+// admin and superadmin 
+Route::post('/add', [InstructorController::class, 'create'])->name('add.addInstructor');
+Route::post('/add', [StudentController::class, 'create'])->name('add.addStudent');
 
 
 
@@ -73,4 +67,8 @@ Route::get('/viewStudentInfo', [StudentController::class, 'info'])->name('info')
 Route::get('/profile', [ProfileController::class, 'editAsStudent'])->name('profile.editAsStudent');
 Route::put('/students/{id}', [StudentController::class, 'update'])->name('student.updateInfo');
 
+// user
+Route::get('/viewUsersData', function (){
+    return Inertia::render('ViewUserData');
+})->name('viewUsersData');
 require __DIR__.'/auth.php';

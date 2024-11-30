@@ -1,56 +1,115 @@
 <template>
-<div v-if="announcements" class="main-container d-flex flex-row gap-3">
-    <div class="card w-50 text-dark bg-light" v-for="(data, index) in announcementArray" :key="index">
-        <div class="container py-2 d-flex justify-content-between align-items-center">
-            <div>
-                <i class="bi bi-megaphone fs-1"></i>
-                <h5 class="card-title">{{ data.title }}</h5>
+    <div v-if="announcements" class="main-container d-flex flex-row flex-wrap gap-3">
+      <div
+        class="card w-50 border-0 shadow-sm"
+        v-for="(data, index) in announcementArray"
+        :key="index"
+        style="background: linear-gradient(135deg, #d4edda, #c8e6c9); border-radius: 12px;"
+      >
+        <div class="card-body p-4 text-center">
+          <!-- Card Label -->
+          <div
+            class="badge text-dark bg-white text-uppercase fw-bold mb-3"
+            style="border-radius: 16px; padding: 0.5rem 1rem; font-size: 0.75rem;"
+          >
+            Announcement
+          </div>
+  
+          <!-- Decorative Icon -->
+          <div class="position-relative">
+            <div
+              class="d-inline-block rounded-circle text-align-center head-img"
+            >
+              <!-- <i class="bi bi-megaphone" style="width: 50px; height: 50px; margin: 15px;"></i> -->
             </div>
-            <div>
-                <i class="bi bi-trash action fs-4" v-if="type === 'admin' || type === 'instructor' || type === 'superadmin'" @click="getIdToDelete(data.id)" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-            </div>
-        </div>
-        <div class="card-body">
-            <p class="card-text">
-                {{ data.content }}
+          </div>
+  
+          <!-- Title -->
+          <h5 class="card-title fw-bold mb-3" style="color: #2e7d32;">
+            {{ data.title }}
+          </h5>
+  
+          <!-- Content -->
+          <p class="card-text text-muted mb-4">{{ data.content }}</p>
+  
+          <!-- Dates -->
+          <div class="text-muted">
+            <p class="mb-1">
+              <strong>Start Date:</strong> {{ data.start_date || 'pending' }}
             </p>
-            <p class="card-text">
-                <strong>Start Date:</strong> <span>{{ data.start_date }}</span><br>
-                <strong>End Date:</strong> <span>{{ data.end_date }}</span>
+            <p class="mb-3">
+              <strong>End Date:</strong> {{ data.end_date || 'pending' }}
             </p>
-            <div class="card-text" v-if="data.is_active"> <strong>Status:</strong> <span class=" text-success p-1 rounded">Active</span></div>
-            <div class="card-text" v-if="!data.is_active"> <strong>Status:</strong> <span class=" text-warning p-1 rounded">Not Active</span></div>
+          </div>
+  
+          <!-- Status -->
+          <div
+            v-if="data.is_active"
+            class="badge text-white bg-success p-2 rounded-pill"
+            style="font-size: 0.85rem;"
+          >
+            Active
+          </div>
+          <div
+            v-else
+            class="badge text-dark bg-warning p-2 rounded-pill"
+            style="font-size: 0.85rem;"
+          >
+            Not Active
+          </div>
         </div>
-        <div class="container py-2 text-muted">
-            Created at: <small>{{ formatDate(data.created_at) }}</small>
+  
+        <!-- Footer -->
+        <div class="card-footer text-muted text-center border-0 bg-transparent">
+          <small>Created at: {{ formatDate(data.created_at) }}</small>
         </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      </div>
+  
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body d-flex flex-row gap-1">
-                    <div>
-                        Are you sure you want to delete the announcement?
-                    </div>
-                    <div class="d-flex flex-row gap-1">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="deleteAnnouncement">Yes</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    </div>
-                </div>
+          <div class="modal-content">
+            <div class="modal-body d-flex flex-row gap-1">
+              <div>
+                Are you sure you want to delete the announcement?
+              </div>
+              <div class="d-flex flex-row gap-1">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  @click="deleteAnnouncement"
+                >
+                  Yes
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  No
+                </button>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-
-    <div class="container ps-0" v-if="announcements.length === 0">
+      </div>
+  
+      <div class="container ps-0" v-if="announcements.length === 0">
         <h5 class="text-muted">No announcement yet.</h5>
-    </div>
-    <div class="alert alert-info" role="alert">
+      </div>
+      <div class="alert alert-info" role="alert">
         <i class="bi bi-info-circle"></i> Announcement created!
+      </div>
     </div>
-</div>
-</template>
+  </template>
+  
 
 <script>
 import { Inertia } from '@inertiajs/inertia';
@@ -92,6 +151,9 @@ export default {
             })
         }
     },
+    mounted(){
+        console.log( "Array " + JSON.stringify(this.announcementArray))
+    }
 }
 </script>
 
@@ -138,5 +200,13 @@ export default {
     0% {
         right: -100%;
     }
+}
+.card .head-img{
+background: url('../../images/announcement_icon.jpg'); 
+width: 80px; 
+height: 80px; 
+margin-bottom: 1.5rem;
+background-position: center;
+background-size: cover;
 }
 </style>

@@ -6,15 +6,17 @@ const form = useForm({
   middle_name: "",
   last_name: "",
   date_of_birth: "",
-  gender: "",
+  gender: "", 
   phone_number: "",
   email: "",
   password: "",
+  enrollment_status: "",
+  gpa: "",
+  student_year: ""
 });
 
 const submitForm = () => {
-  console.log("data is " + JSON.stringify(form))
-  form.post(route('admin.addInstructor') ,{
+  form.post(route('add.addStudent') ,{
   onSuccess : () => alert("Data post successfully"),
   onError : (errors) => alert("Error => " + JSON.stringify(errors))
   })
@@ -23,7 +25,7 @@ const submitForm = () => {
 </script>
 <template>
      <div class="instructor-container mt-1">
-      <h1 class="text-center">Create Instructor</h1>
+      <h1 class="text-center">Create Student</h1>
       <form @submit.prevent="submitForm" class="row g-3">
         <!-- First Name -->
         <div class="col-md-4">
@@ -60,6 +62,17 @@ const submitForm = () => {
           </select>
         </div>
   
+          <!-- Status -->
+          <div class="col-md-6">
+          <label for="gender" class="form-label">Enrollment status</label>
+          <select id="gender" class="form-select" v-model="form.enrollment_status" required>
+            <option value="" disabled>Select status</option>
+            <option value="male">Enrolled</option>
+            <option value="female">Graduate</option>
+            <option value="other">Withdrawn</option>
+          </select>
+        </div>
+
         <!-- Phone Number -->
         <div class="col-md-6">
           <label for="phoneNumber" class="form-label">Phone Number</label>
@@ -71,6 +84,13 @@ const submitForm = () => {
           <label for="email" class="form-label">Email</label>
           <input type="email" id="email" class="form-control" v-model="form.email" required />
         </div>
+
+         <!-- Student year -->
+         <div class="col-md-6">
+          <label for="year" class="form-label">Student year</label>
+          <input type="text" id="year" class="form-control" v-model="form.student_year" required />
+        </div>
+
   
          <!-- Password -->
          <div class="col-md-6">
@@ -78,6 +98,11 @@ const submitForm = () => {
           <input type="text" id="password" class="form-control" v-model="form.password" required />
         </div>
   
+         <!-- GPA -->
+         <div class="col-md-6">
+          <label for="password" class="form-label">GPA</label>
+          <input type="text" id="password" class="form-control" v-model="form.gpa" placeholder="optional"/>
+        </div>
        
   
         <!-- Submit Button -->

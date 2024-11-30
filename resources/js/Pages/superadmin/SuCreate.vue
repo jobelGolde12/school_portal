@@ -1,6 +1,6 @@
 <script setup>
-import Instructor from '@/Components/AdminCreate/Instructor.vue';
-import Student from '@/Components/AdminCreate/Student.vue';
+import Instructor from '@/Components/add/Instructor.vue';
+import Student from '@/Components/add/Student.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import SuperAdminLayout from '@/Layouts/SuperAdminLayout.vue';
