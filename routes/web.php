@@ -37,11 +37,11 @@ Route::post('/adminAddStudent', [StudentController::class, 'create'])->name('adm
 
 
 // super admin 
-Route::get('/superadmin', [SuperAdmin::class , 'index'])->name('superAdmin.ViewUsersData');
+// Route::get('/superadmin', [SuperAdmin::class , 'index'])->name('superadmin.viewUsersData');
 // Route::delete('/adminDeleteUser/{id}',[DataController::class, 'destroy'])->name('adminDeleteUser.destroy');
-// Route::get('/viewUsersData', function (){
-//         return Inertia::render('ViewUserData');
-// })->name('viewUsersData');
+Route::get('/superadmin', function (){
+        return Inertia::render('superadmin/SuAdminViewUsersData');
+})->name('viewUsersData');
 Route::get('/superadmin', [SuperAdmin::class, 'RouteTocreate'])->name('suAdmin.Create');
 // Route::post('/adminAddInstructor', [InstructorController::class, 'create'])->name('admin.addInstructor');
 // Route::post('/adminAddStudent', [StudentController::class, 'create'])->name('admin.addStudent');

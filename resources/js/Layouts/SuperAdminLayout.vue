@@ -25,19 +25,19 @@ const showingNavigationDropdown = ref(false);
               <Link :href="route('dashboard')" class="nav-link" :class="{'active-link' : $page.url === route('dashboard')}"><i class="bi bi-house"></i> Home</Link>
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               
-              <Link  class="nav-link" :href="route('superAdmin.ViewUsersData')"
+              <Link  class="nav-link" :href="route('viewUsersData')"
                 ><i class="bi bi-people"></i> Users</Link
               >
-            </li>
+            </li> -->
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               
               <Link  class="nav-link" :href="route('suAdmin.Create')"
                 ><i class="bi bi-people"></i> Create</Link
               >
-            </li>
+            </li> -->
     
             <li class="nav-item">
               <Link :href="route('logout')" method="post" as="button" class="nav-link ms-0 ps-3 logout" >

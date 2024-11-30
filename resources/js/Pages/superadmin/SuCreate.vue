@@ -36,7 +36,7 @@ const viewStudentPageFunc = () => {
             <Student v-if="viewStudentPage" />
     </div>
 </SuperAdminLayout>
-</template>
+</template> 
 
 <style lang="css" scoped>
 .main-container{
