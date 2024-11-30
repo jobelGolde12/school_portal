@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
 
+const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
@@ -11,8 +12,8 @@ import { Link } from "@inertiajs/vue3";
         class="dashboard-container bg-light d-flex flex-row justify-content-between align-items-center"
       >
         <div class="sidebar ps-2">
-          <div class="logo text-light">
-            <i class="bi bi-bar-chart-line-fill"></i> Student Dashboard
+          <div class="logo">
+            <i class="bi bi-bar-chart-line-fill"></i> Super Admin
           </div>
 
           <div class="container d-flex justify-content-center align-items-">
@@ -21,23 +22,23 @@ import { Link } from "@inertiajs/vue3";
 
           <ul class="nav flex-column mt-3">
             <li class="nav-item">
-              <Link :href="route('dashboard')" class="nav-link" :class="{'active-link' : $page.url === route().current('dashboard')}"><i class="bi bi-house"></i> Home</Link>
-            </li>
-            <!-- <li class="nav-item">
-              <Link :href="route('profile.editAsAdmin')" class="nav-link"
-                ><i class="bi bi-people"></i> Profile</Link
-              >
-            </li> -->
-            <li class="nav-item">
-              <Link :href="route('info')" class="nav-link" :class="{'active-link' : $page.url === route().current('viewSubjects')}"><i class="bi bi-info-circle"></i> My Info</Link>
+              <Link :href="route('dashboard')" class="nav-link" :class="{'active-link' : $page.url === route('dashboard')}"><i class="bi bi-house"></i> Home</Link>
             </li>
 
             <li class="nav-item">
-              <Link :href="route('profile.editAsStudent')" class="nav-link"
-                ><i class="bi bi-pencil"></i> Edit info</Link
+              
+              <Link  class="nav-link" :href="route('superAdmin.ViewUsersData')"
+                ><i class="bi bi-people"></i> Users</Link
               >
             </li>
 
+            <li class="nav-item">
+              
+              <Link  class="nav-link" :href="route('suAdmin.Create')"
+                ><i class="bi bi-people"></i> Create</Link
+              >
+            </li>
+    
             <li class="nav-item">
               <Link :href="route('logout')" method="post" as="button" class="nav-link ms-0 ps-3 logout" >
                 <i class="bi bi-box-arrow-left"></i> Logout
@@ -64,9 +65,8 @@ import { Link } from "@inertiajs/vue3";
   width: 20%;
   position: relative;
   padding-top: 20px;
-  background-color: #0093E9;
-  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-
+  background: rgba(0,0,0,.1);
+  /* border-right: 3px solid #28a745; */
 }
 .sidebar .logo {
   font-size: 1.2rem;
@@ -76,17 +76,15 @@ import { Link } from "@inertiajs/vue3";
   padding-left: 20px;
 }
 .sidebar a {
-  color: #fff;
+  color: #374151;
   text-decoration: none;
   padding: 10px 20px;
   display: flex;
   align-items: center;
   font-size: 15px;
-  border-radius: 20px 0 0 20px; 
 }
 .sidebar a:hover {
   background-color: #e5e7eb;
-  color: #333;
 }
 .sidebar .active-link {
   background-color: red;

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectsController;
+use App\Http\Controllers\SuperAdmin;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,18 @@ Route::get('/viewUsersData', function (){
 Route::get('/adminCreate', [DataController::class, 'RouteTocreate'])->name('adminCreate');
 Route::post('/adminAddInstructor', [InstructorController::class, 'create'])->name('admin.addInstructor');
 Route::post('/adminAddStudent', [StudentController::class, 'create'])->name('admin.addStudent');
+
+
+// super admin 
+Route::get('/superadmin', [SuperAdmin::class , 'index'])->name('superAdmin.ViewUsersData');
+// Route::delete('/adminDeleteUser/{id}',[DataController::class, 'destroy'])->name('adminDeleteUser.destroy');
+// Route::get('/viewUsersData', function (){
+//         return Inertia::render('ViewUserData');
+// })->name('viewUsersData');
+Route::get('/superadmin', [SuperAdmin::class, 'RouteTocreate'])->name('suAdmin.Create');
+// Route::post('/adminAddInstructor', [InstructorController::class, 'create'])->name('admin.addInstructor');
+// Route::post('/adminAddStudent', [StudentController::class, 'create'])->name('admin.addStudent');
+
 
 
 Route::middleware('auth')->group(function () {

@@ -19,6 +19,11 @@ class DashboardController extends Controller
                 'announcement' => $announcement,
                 'allUsers' => $users
             ]); 
+            }else if (Auth::check() && Auth::user()->type === 'superadmin') { 
+                return Inertia::render('superadmin/Home', [
+                'announcement' => $announcement,
+                'allUsers' => $users
+            ]); 
             }else if (Auth::check() && Auth::user()->type === 'instructor') { 
                 return Inertia::render('instructor/InstructorDashboard', [
                 'announcement' => $announcement,

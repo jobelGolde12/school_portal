@@ -1,8 +1,9 @@
 <script setup>
 import { computed, defineProps, onMounted, ref } from 'vue';
-import AdminLayout from '@/Layouts/AdminLayout.vue';
+import SuperAdminLayout from '@/Layouts/SuperAdminLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
 import { usePage } from '@inertiajs/inertia-vue3';
+import { Link } from '@inertiajs/vue3';
 const props = defineProps({
     users: {
         type: Object,
@@ -44,11 +45,12 @@ const deleteUser = () => {
 onMounted(() => {
     tableData.value = props.users
     originalData.value = props.users;
+    console.log(tableData.value)
 })
 </script>
 
 <template>
-   <AdminLayout>
+   <SuperAdminLayout>
     <div class="mt-5 pt-5 container">
         <div class="container-fluid px-0 d-flex flex-row justify-content-between align-items-center">
             <h1 class="text-dark fw-light mb-0">All users</h1>
@@ -108,14 +110,14 @@ onMounted(() => {
 
                     </td>
                     <td>
-                        <Link :href="route('adminCreate')" class="btn btn-primary me-3" :class="{'disabled' : data.type === 'admin'}"><i class="bi bi-pencil"></i></Link>
-                        <button class="btn btn-warning" :class="{'disabled' : data.type === 'admin' || data.type === 'superAdmin'}" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getIdToDelete(data.id)"><i class="bi bi-trash"></i></button>
+                        <Link :href="route('adminCreate')" class="btn btn-primary me-3" :class="{'disabled' : data.type === 'superadmin'}"><i class="bi bi-pencil"></i></Link>
+                        <button class="btn btn-warning" :class="{'disabled' : data.type === 'superadmin'}" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getIdToDelete(data.id)"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
         </div>
     </div>
-   </AdminLayout>
+   </SuperAdminLayout>
 
 
     <!-- Modal -->
