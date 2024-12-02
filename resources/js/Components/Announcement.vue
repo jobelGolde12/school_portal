@@ -64,7 +64,7 @@
         <!-- Footer -->
         <div class="card-footer text-muted text-center border-0 bg-transparent">
           <small>Created at: {{ formatDate(data.created_at) }}</small>
-          <i class="bi bi-trash btn btn-warning px-3 ms-2"></i>
+          <i class="bi bi-trash action fs-4 ms-3" v-if="type === 'admin' || type === 'instructor' || type === 'superadmin'" @click="getIdToDelete(data.id)" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
         </div>
       </div>
   

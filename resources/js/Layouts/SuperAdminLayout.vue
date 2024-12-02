@@ -27,7 +27,7 @@ const showingNavigationDropdown = ref(false);
 
             <li class="nav-item">
               
-              <Link  class="nav-link" :href="route('viewUsersData')"
+              <Link  class="nav-link" :href="route('AdminViewUsersData')"
                 ><i class="bi bi-people"></i> Users</Link
               >
             </li>

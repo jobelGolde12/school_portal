@@ -32,7 +32,7 @@ Route::get('/adminCreate', [DataController::class, 'RouteTocreate'])->name('admi
 
 
 // super admin 
-Route::get('/superadmin', [SuperAdmin::class , 'index'])->name('viewUsersData');
+Route::get('/superadmin', [SuperAdmin::class , 'index'])->name('viewUsersDataAsSuperAdmin');
 // Route::delete('/adminDeleteUser/{id}',[DataController::class, 'destroy'])->name('adminDeleteUser.destroy');
 Route::get('/superadmin', [SuperAdmin::class, 'RouteTocreate'])->name('suAdmin.Create');
 

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, defineProps, onMounted, ref } from 'vue';
+import { defineProps, onMounted, ref } from 'vue';
 import SuperAdminLayout from '@/Layouts/SuperAdminLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
 import { usePage } from '@inertiajs/inertia-vue3';
