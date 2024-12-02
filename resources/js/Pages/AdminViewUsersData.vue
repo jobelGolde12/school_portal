@@ -3,7 +3,7 @@ import { computed, defineProps, onMounted, ref } from 'vue';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
 import { usePage } from '@inertiajs/inertia-vue3';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 const props = defineProps({
     users: {
         type: Object,
@@ -100,7 +100,7 @@ onMounted(() => {
                 <tr v-for="data in tableData" :key="data.index">
                     <td>{{ data.id }}</td>
                     <td> {{ data.name }} </td>
-                    <td>{{ data.email }}</td>
+                    <td>{{ data.email }}</td>   
                     <td>
                         <span class="bg-success user-type-color " v-if="data.type === 'admin'"></span>
                         <span class="bg-primary user-type-color" v-if="data.type === 'instructor'"></span>
@@ -110,7 +110,7 @@ onMounted(() => {
 
                     </td>
                     <td>
-                        <Link :href="route('adminCreate')" class="btn btn-primary me-3" :class="{'disabled' : data.type === 'admin' || data.type === 'superadmin'}"><i class="bi bi-pencil"></i></Link>
+                        <Link :href="route('editUserRoute', {id: data.id})" class="btn btn-primary me-3" :class="{'disabled' : data.type === 'admin' || data.type === 'superadmin'}"><i class="bi bi-pencil"></i></Link>
                         <button class="btn btn-warning" :class="{'disabled' : data.type === 'admin' || data.type === 'superadmin'}" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getIdToDelete(data.id)"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>

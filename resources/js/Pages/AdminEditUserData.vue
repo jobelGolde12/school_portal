@@ -1,7 +1,20 @@
 
 <script setup>
 import { reactive } from "vue";
+import { defineProps } from "vue";
+import { Head } from "@inertiajs/vue3";
 
+const props = defineProps({
+  info1: {
+    type: Object,
+    default: () => ({})
+  },
+  info2: {
+    type: Object,
+    default: () => ({})
+  }
+})
+console.log("data => " + props.info1)
 const form = reactive({
   first_name: "",
   middle_name: "",
@@ -33,6 +46,7 @@ const submitForm = () => {
 
 
 <template>
+  <Head title="edit user" />
     <div class="container mt-5">
       <h1 class="text-center">Student Information Form</h1>
       <form @submit.prevent="submitForm" class="row g-3">
