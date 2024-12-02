@@ -35,10 +35,10 @@
           <!-- Dates -->
           <div class="text-muted">
             <p class="mb-1">
-              <strong>Start Date:</strong> {{ data.start_date || 'pending' }}
+              <strong>Start Date:</strong> {{ data.start_date || 'pending...' }}
             </p>
             <p class="mb-3">
-              <strong>End Date:</strong> {{ data.end_date || 'pending' }}
+              <strong>End Date:</strong> {{ data.end_date || 'pending...' }}
             </p>
           </div>
   
@@ -48,8 +48,9 @@
             class="badge text-white bg-success p-2 rounded-pill"
             style="font-size: 0.85rem;"
           >
-            Active
+            Active 
           </div>
+
           <div
             v-else
             class="badge text-dark bg-warning p-2 rounded-pill"
@@ -57,11 +58,13 @@
           >
             Not Active
           </div>
+
         </div>
   
         <!-- Footer -->
         <div class="card-footer text-muted text-center border-0 bg-transparent">
           <small>Created at: {{ formatDate(data.created_at) }}</small>
+          <i class="bi bi-trash btn btn-warning px-3 ms-2"></i>
         </div>
       </div>
   
@@ -152,7 +155,7 @@ export default {
         }
     },
     mounted(){
-        console.log( "Array " + JSON.stringify(this.announcementArray))
+        // console.log( "Array " + JSON.stringify(this.announcements))
     }
 }
 </script>
