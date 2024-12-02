@@ -26,7 +26,6 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // Admin 
-Route::get('/adminViewUsersData', [DataController::class , 'index'])->name('AdminViewUsersData');
 Route::delete('/adminDeleteUser/{id}',[DataController::class, 'destroy'])->name('adminDeleteUser.destroy');
 Route::get('/adminCreate', [DataController::class, 'RouteTocreate'])->name('adminCreate');
 
@@ -36,11 +35,12 @@ Route::get('/superadmin', [SuperAdmin::class , 'index'])->name('viewUsersDataAsS
 // Route::delete('/adminDeleteUser/{id}',[DataController::class, 'destroy'])->name('adminDeleteUser.destroy');
 Route::get('/superadmin', [SuperAdmin::class, 'RouteTocreate'])->name('suAdmin.Create');
 
-// admin and superadmin 
+// admin and superadmin route   
 Route::post('/add', [InstructorController::class, 'create'])->name('add.addInstructor');
 Route::post('/add', [StudentController::class, 'create'])->name('add.addStudent');
 Route::get('edit-user/{id}', [DataController::class, 'routeToEditUser'])->name('editUserRoute');
 Route::post('edit-user', [DataController::class, 'editUser'])->name('editUser');
+Route::get('/view-all-users', [DataController::class , 'index'])->name('viewAllUsers');
 
 
 

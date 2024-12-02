@@ -14,7 +14,7 @@ class DataController extends Controller
 {
     public function index(){
         $data = User::all();
-        return Inertia::render('AdminViewUsersData', ['users' => $data]);
+        return Inertia::render('ViewAllUsers', ['users' => $data]);
     }
     public function edit(){
         
@@ -30,10 +30,16 @@ class DataController extends Controller
     }
     public function routeToEditUser($id){
         $information1 = User::findOrFail($id);
-        $information2 = UserInfo::findOrFail($id);
-        return Inertia::render('AdminEditUserData', [
-            'info1' => $information1,
-            'info2' => $information2
+        $information2 = UserInfo::find($id);
+
+        $data = [
+            'info1' => $information1
+        ];
+        if($information2){
+            $data['info2'] = $information2;
+        }
+        return Inertia::render('EditUser', [
+            'data' => $data
         ]);
     }
     public function editUser(Request $request){
