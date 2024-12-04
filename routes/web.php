@@ -39,7 +39,7 @@ Route::get('/superadmin', [SuperAdmin::class, 'RouteTocreate'])->name('suAdmin.C
 Route::post('/add', [InstructorController::class, 'create'])->name('add.addInstructor');
 Route::post('/add', [StudentController::class, 'create'])->name('add.addStudent');
 Route::get('edit-user/{id}', [DataController::class, 'routeToEditUser'])->name('editUserRoute');
-Route::post('edit-user', [DataController::class, 'editUser'])->name('editUser');
+Route::put('edit-user/{id}', [DataController::class, 'editUser'])->name('editUser');
 Route::get('/view-all-users', [DataController::class , 'index'])->name('viewAllUsers');
 
 

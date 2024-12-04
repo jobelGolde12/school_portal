@@ -6,7 +6,7 @@ import { useForm } from "@inertiajs/vue3";
 const props = defineProps({
   data: {
     type: Object,
-    default: () => []
+    default: () => ({})
   },
 });
 
@@ -19,8 +19,14 @@ const form = useForm({
   enrollment_status: props.data.info2?.enrollment_status || '',
   gpa:               props.data.info2?.gpa || null,
   subjects_enrolled: props.data.info2?.subjects_enrolled || '',
-  grades_by_subject: props.data.info2?.grades_by_subject || ''
+  grades_by_subject: props.data.info2?.grades_by_subject || '',
+  type: props.data.info1?.type || ''
 });
+form.gpa = form.gpa ? form.gpa.toString() : '';
+form.subjects_enrolled = Array.isArray(form.subjects_enrolled)
+  ? form.subjects_enrolled.join(',')
+  : form.subjects_enrolled;
+
 
 const submitForm = () => {
   try {
@@ -30,15 +36,16 @@ const submitForm = () => {
     console.error("Error parsing JSON fields:", error);
   }
 
-  form.post('/submit-route', { 
+  form.put(route('editUser', {id : props.data.info1.id}), { 
     onFinish: () => {
-      console.log('Form submission complete');
+      alert('Form submission complete');
     },
     onError: (errors) => {
       console.log('Error during submission', errors);
     }
   });
 };
+console.log("The pass is " + JSON.stringify(props.data.info1))
 </script>
 
 <template>
@@ -80,7 +87,6 @@ const submitForm = () => {
         <label for="email" class="form-label">Email</label>
         <input type="email" id="email" class="form-control" v-model="form.email" required />
       </div>
-
       <!-- Enrollment Status -->
       <div class="col-md-6" v-if="props.data.info1.type === 'student'">
         <label for="enrollmentStatus" class="form-label">Enrollment Status</label>
@@ -94,7 +100,8 @@ const submitForm = () => {
 
       <!-- GPA -->
       <div class="col-md-6" v-if="props.data.info1.type === 'student'">
-        <label for="gpa" class="form-label">GPA</label>
+        <label for="gpa" class="form-label">GPA - {{ props.data.info1.type }}
+        </label>
         <input type="number" id="gpa" class="form-control" v-model="form.gpa" step="0.01" min="0" max="4.00" />
       </div>
 

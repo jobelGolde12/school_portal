@@ -27,7 +27,7 @@ class StudentController extends Controller
          ]);
         $user = User::create([
              'name' => $validate['first_name'] . ' ' . $validate['last_name'] . ' ' . $validate['middle_name'],
-             'email' => $validate['email'],
+             'email' => $validate['email'], 
              'type' => "student",
              'password' => Hash::make($validate['password']),
  
@@ -63,7 +63,7 @@ class StudentController extends Controller
         'email' => 'required|email|unique:users,email,' . $id,
     ]);
 
-    $student = StudentInfo::findOrFail($id);
+    $student = StudentInfo::findOrFail($id);  
     $student->update($validated);
 
     return back()->with('success', 'Student data updated successfully.');

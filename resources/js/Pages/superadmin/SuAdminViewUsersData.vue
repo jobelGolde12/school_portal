@@ -42,6 +42,7 @@ const deleteUser = () => {
     //     }
     // })
 }
+console.log("users => " + props.users)
 onMounted(() => {
     tableData.value = props.users
     originalData.value = props.users;

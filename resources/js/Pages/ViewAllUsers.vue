@@ -46,6 +46,8 @@ onMounted(() => {
     tableData.value = props.users
     originalData.value = props.users;
 })
+console.log("users => " + tableData.value)
+
 </script>
 
 <template>
