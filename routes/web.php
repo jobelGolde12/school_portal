@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InstructorController;
@@ -38,6 +39,7 @@ Route::get('/superadmin', [SuperAdmin::class, 'RouteTocreate'])->name('suAdmin.C
 // admin and superadmin route   
 Route::post('/add', [InstructorController::class, 'create'])->name('add.addInstructor');
 Route::post('/add', [StudentController::class, 'create'])->name('add.addStudent');
+Route::post('/add', [AdminController::class, 'create'])->name('add.addAdmin');
 Route::get('edit-user/{id}', [DataController::class, 'routeToEditUser'])->name('editUserRoute');
 Route::put('edit-user/{id}', [DataController::class, 'editUser'])->name('editUser');
 Route::get('/view-all-users', [DataController::class , 'index'])->name('viewAllUsers');

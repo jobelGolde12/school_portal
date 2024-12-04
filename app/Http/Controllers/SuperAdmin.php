@@ -24,7 +24,7 @@ class SuperAdmin extends Controller
         return redirect()->back()->with('success','user deleted');
     }
     public function RouteTocreate(){
-    return Inertia::render('superadmin/SuCreate');
+    return Inertia::render('Create');
     }
 
 
