@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
+            $table->string('date_of_birth');
+            $table->string('phone_number');
+            $table->string('gender');
             $table->timestamps();
         });
     }

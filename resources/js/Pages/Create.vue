@@ -26,6 +26,7 @@ const viewAdminPageFunc = () => {
     viewInstructorPage.value = false
 }
 const user = usePage().props.auth.user;
+console.log('type ' + user.type);
 </script>
 <template>
     <Head title="Admin Create" />
@@ -43,7 +44,7 @@ const user = usePage().props.auth.user;
                 <button class=" rounded btn btn-secondary p-5 d-block" @click="viewStudentPageFunc">
                     <h1 class="text-light text-align-center"><i class="bi bi-plus fs-1 me-2"></i>Student</h1>
                 </button>
-                <button class=" rounded btn btn-primary p-5 d-block" @click="viewAdminPageFunc">
+                <button class=" rounded btn btn-primary p-5 d-block" @click="viewAdminPageFunc" v-if="user.type === 'superadmin'">
                     <h1 class="text-light text-align-center"><i class="bi bi-plus fs-1 me-2"></i>Admin</h1>
                 </button>
             </div>

@@ -27,14 +27,14 @@ const showingNavigationDropdown = ref(false);
 
             <li class="nav-item">
               
-              <Link  class="nav-link" :href="route('viewAllUsers')"
+              <!-- <Link  class="nav-link" :href="route('viewUsersDataAsSuperAdmin')"
                 ><i class="bi bi-people"></i> Users</Link
-              >
+              > -->
             </li>
 
             <li class="nav-item">
               
-              <Link  class="nav-link" :href="route('suAdmin.Create')"
+              <Link  class="nav-link" :href="route('adminCreate')"
                 ><i class="bi bi-people"></i> Create</Link
               >
             </li>

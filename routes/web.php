@@ -32,14 +32,14 @@ Route::get('/adminCreate', [DataController::class, 'RouteTocreate'])->name('admi
 
 
 // super admin 
-Route::get('/superadmin', [SuperAdmin::class , 'index'])->name('viewUsersDataAsSuperAdmin');
+Route::get('/superadmin/view', [SuperAdmin::class , 'index'])->name('viewUsersDataAsSuperAdmin');
 // Route::delete('/adminDeleteUser/{id}',[DataController::class, 'destroy'])->name('adminDeleteUser.destroy');
-Route::get('/superadmin', [SuperAdmin::class, 'RouteTocreate'])->name('suAdmin.Create');
+Route::get('/superadmin/create', [SuperAdmin::class, 'RouteTocreate'])->name('suAdmin.Create');
 
 // admin and superadmin route   
-Route::post('/add', [InstructorController::class, 'create'])->name('add.addInstructor');
-Route::post('/add', [StudentController::class, 'create'])->name('add.addStudent');
-Route::post('/add', [AdminController::class, 'create'])->name('add.addAdmin');
+Route::post('/add/instructor', [InstructorController::class, 'create'])->name('add.addInstructor');
+Route::post('/add/student', [StudentController::class, 'create'])->name('add.addStudent');
+Route::post('/add/admin', [AdminController::class, 'create'])->name('add.addAdmin');
 Route::get('edit-user/{id}', [DataController::class, 'routeToEditUser'])->name('editUserRoute');
 Route::put('edit-user/{id}', [DataController::class, 'editUser'])->name('editUser');
 Route::get('/view-all-users', [DataController::class , 'index'])->name('viewAllUsers');

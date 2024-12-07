@@ -30,7 +30,7 @@ const props = defineProps({
           <p><strong>Phone Number:</strong> <span class="text-success">{{ props.studentInfo.phone_number }}</span></p>
           <p><strong>Email:</strong> <span class="text-success">{{ props.userInfo.email }}</span></p>
           <p><strong>GPA:</strong> <span class="text-success">{{ props.studentInfo.gpa || "N/A" }}</span></p>
-          <p><strong>Enrollment Status:</strong> <span class="text-success">{{ props.studentInfo.enrollment_status }}</span></p>
+          <p><strong>Enrollment Status:</strong> <span class="text-success">{{ props.studentInfo.enrollment_status || 'pending...' }}</span></p>
         </div>
     </div>
 
