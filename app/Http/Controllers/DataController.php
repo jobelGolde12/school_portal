@@ -8,6 +8,7 @@ use App\Models\InstructorModel;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class DataController extends Controller
@@ -42,13 +43,16 @@ class DataController extends Controller
             'data' => $data
         ]);
     }
-        public function editUser(Request $request, User $user, InstructorModel $instructor){
+        public function editUser(Request $request, $id){
+            $user = User::findOrFail($id);
+            $instructor = InstructorModel::findOrFail($id);
+
             $request->validate([
                 'name' => 'required|string|max:255',
                 'date_of_birth' => 'required|date',
                 'gender' => 'required|string|max:255',
                 'phone_number' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email' . $user->id,
+                'email' => 'required|email',
                 'enrollment_status' => 'nullable',
                 'gpa' => 'nullable',
                 'subjects_enrolled' => 'nullable',
@@ -60,6 +64,7 @@ class DataController extends Controller
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'type' => $request->type,
             ]);
 
             $instructor->updateOrCreate([
@@ -71,6 +76,7 @@ class DataController extends Controller
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'type' => $request->type,
             ]);
 
             $instructor->updateOrCreate([
@@ -84,7 +90,7 @@ class DataController extends Controller
             ]);
         }
 
-        return Inertia::render('EditUser');
+        return Inertia::render('/dashboard');
     }
   
 

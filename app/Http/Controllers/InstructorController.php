@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InstructorModel;
+use App\Models\SubjectsModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -36,5 +37,26 @@ class InstructorController extends Controller
  
          ]);
          // return redirect()->route()->with('Message', 'Created successfully');
+     }
+
+     public function addSubject(Request $request){
+        $request->validate([
+        'name' => 'required|string|max:255',
+        'code' => 'required|string|max:255',
+        ]);
+
+        SubjectsModel::create([
+            'name' => $request->name,
+            'code' => $request->code,
+            'description' => 'none',
+            ]);
+
+     }
+
+     public function deleteSubject($id){
+        
+        $sub = SubjectsModel::findOrFail($id);
+        $sub->delete();
+        return redirect()->back()->with('success','subject deleted');
      }
 }

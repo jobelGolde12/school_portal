@@ -40,8 +40,8 @@ Route::get('/superadmin/create', [SuperAdmin::class, 'RouteTocreate'])->name('su
 Route::post('/add/instructor', [InstructorController::class, 'create'])->name('add.addInstructor');
 Route::post('/add/student', [StudentController::class, 'create'])->name('add.addStudent');
 Route::post('/add/admin', [AdminController::class, 'create'])->name('add.addAdmin');
-Route::get('edit-user/{id}', [DataController::class, 'routeToEditUser'])->name('editUserRoute');
-Route::put('edit-user/{id}', [DataController::class, 'editUser'])->name('editUser');
+Route::get('/edit-user-route/{id}', [DataController::class, 'routeToEditUser'])->name('editUserRoute');
+Route::put('/edit-user/{id}', [DataController::class, 'editUser'])->name('editUser');
 Route::get('/view-all-users', [DataController::class , 'index'])->name('viewAllUsers');
 
 
@@ -64,7 +64,8 @@ Route::delete('/announcement/{id}', [AnnouncementController::class, 'destroy'])-
 // Instructor 
 Route::get('/viewSubjects', [SubjectsController::class, 'index'])->name('viewSubjects');
 Route::get('/addSubjectRoute', [SubjectsController::class, 'goToAddSub'])->name('addSubjectRoute');
-
+Route::post('/add-subject', [InstructorController::class, 'addSubject'])->name('add.subject');
+Route::delete('/delete-subject/{id}', [InstructorController::class, 'deleteSubject'])->name('delete.subject');
 
 // student 
 Route::get('/viewStudentInfo', [StudentController::class, 'info'])->name('info');

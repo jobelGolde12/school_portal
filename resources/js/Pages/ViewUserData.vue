@@ -14,7 +14,6 @@ console.log(user);
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="container mt-5">
 
-          <!-- Bootstrap Card -->
           <div class="card mx-auto shadow" style="max-width: 22rem; border-radius: 15px;">
             <div class="card-body text-center">
               <!-- Profile Image -->
@@ -39,10 +38,11 @@ console.log(user);
               <p class="text-muted mb-3">{{ user.type }}</p>
 
 
-              <div class="container">
+              <div class="container text-start">
                 <p class="mb-0"><strong>Email: </strong> {{ user.email }}</p>
                 <p class="mb-0"><strong>Phone number: </strong> {{ user.prone_number || 'none' }}</p>
                 <p><strong>Gender: </strong> {{ user.gender || 'none' }}</p>
+                <p><strong>Enrollment Status: </strong><span class="text-danger"> Not Enrolled</span></p>
 
 
               </div>

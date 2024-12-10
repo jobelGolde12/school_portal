@@ -11,6 +11,5 @@ class SubjectsModel extends Model
         'name',
         'code',
         'description',
-        'user_id'
     ];
 }

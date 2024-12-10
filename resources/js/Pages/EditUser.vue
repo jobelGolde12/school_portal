@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps } from "vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 import { useForm } from "@inertiajs/vue3"; 
 
 const props = defineProps({
@@ -29,14 +29,16 @@ form.subjects_enrolled = Array.isArray(form.subjects_enrolled)
 
 
 const submitForm = () => {
-  try {
-    form.subjects_enrolled = form.subjects_enrolled.split(",").map(subject => subject.trim());
-    form.grades_by_subject = JSON.parse(form.grades_by_subject);
-  } catch (error) {
-    console.error("Error parsing JSON fields:", error);
+  if(props.data.info1?.type === 'student'){
+        try {
+        form.subjects_enrolled = form.subjects_enrolled.split(",").map(subject => subject.trim());
+        form.grades_by_subject = JSON.parse(form.grades_by_subject);
+        } catch (error) {
+          console.error("Error parsing JSON fields:", JSON.stringify(error));
+        }
   }
 
-  form.put(route('editUser', {id : props.data.info1.id}), { 
+  form.put(route('editUser', {id : props.data.info1?.id}), { 
     onFinish: () => {
       alert('Form submission complete');
     },
@@ -44,8 +46,8 @@ const submitForm = () => {
       console.log('Error during submission', errors);
     }
   });
-};
-console.log("The pass is " + JSON.stringify(props.data.info1))
+};  
+console.log("The id is " + JSON.stringify(props.data.info1?.id))
 </script>
 
 <template>
@@ -88,7 +90,7 @@ console.log("The pass is " + JSON.stringify(props.data.info1))
         <input type="email" id="email" class="form-control" v-model="form.email" required />
       </div>
       <!-- Enrollment Status -->
-      <div class="col-md-6" v-if="props.data.info1.type === 'student'">
+      <div class="col-md-6" v-if="props.data.info1?.type === 'student'">
         <label for="enrollmentStatus" class="form-label">Enrollment Status</label>
         <select id="enrollmentStatus" class="form-select" v-model="form.enrollment_status" required>
           <option value="" disabled>Select Status</option>
@@ -99,20 +101,20 @@ console.log("The pass is " + JSON.stringify(props.data.info1))
       </div>
 
       <!-- GPA -->
-      <div class="col-md-6" v-if="props.data.info1.type === 'student'">
-        <label for="gpa" class="form-label">GPA - {{ props.data.info1.type }}
+      <div class="col-md-6" v-if="props.data.info1?.type === 'student'">
+        <label for="gpa" class="form-label">GPA
         </label>
         <input type="number" id="gpa" class="form-control" v-model="form.gpa" step="0.01" min="0" max="4.00" />
       </div>
 
       <!-- Subjects Enrolled -->
-      <div class="col-md-12" v-if="props.data.info1.type === 'student'">
+      <div class="col-md-12" v-if="props.data.info1?.type === 'student'">
         <label for="subjectsEnrolled" class="form-label">Subjects Enrolled (Comma Separated)</label>
         <input type="text" id="subjectsEnrolled" class="form-control" v-model="form.subjects_enrolled" placeholder="e.g., Math, Science, English" />
       </div>
 
       <!-- Grades by Subject -->
-      <div class="col-md-12" v-if="props.data.info1.type === 'student'">
+      <div class="col-md-12" v-if="props.data.info1?.type === 'student'">
         <label for="gradesBySubject" class="form-label">Grades by Subject (JSON Format)</label>
         <textarea id="gradesBySubject" class="form-control" v-model="form.grades_by_subject" rows="3" placeholder='e.g., {"Math": "A", "Science": "B+"}'></textarea>
       </div>
@@ -120,9 +122,10 @@ console.log("The pass is " + JSON.stringify(props.data.info1))
       <!-- Submit Button -->
       <div class="d-flex gap-2">
         <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
+        <Link :href="route('dashboard')" class="btn btn-dark"> Back to dashboard </Link>
+      </div>  
     </form>
-  </div>
+  </div>  
 </template>
 
 <style scoped>

@@ -1,5 +1,6 @@
 <script setup>
 import InstructorLayout from '@/Layouts/InstructorLayout.vue';
+import { Inertia } from '@inertiajs/inertia';
 import { Head, Link } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
 
@@ -10,6 +11,12 @@ const props = defineProps({
     }
 });
 
+const deleteSubject = (id) => {
+    Inertia.delete(route('delete.subject', id), {
+        onSuccess: () => alert('Subject deleted'),
+        onError: (errors) => console.log("an error occured while deleting data => " + errors)
+    })
+}
 </script>
 <template>
     <Head title="View subjects"  />
@@ -33,7 +40,7 @@ const props = defineProps({
                     <tr v-for="data in props.subjects" :key="data.index">
                         <td>{{ data.name }}</td>
                         <td>{{ data.code }}</td>
-                        <td><button class="btn btn-warning bi bi-trash"></button></td>
+                        <td><button class="btn btn-warning bi bi-trash" @click="deleteSubject(data.id)"></button></td>
                     </tr>
                 </tbody>
             </table>
