@@ -33,14 +33,14 @@ const getIdToDelete = (id) => {
     console.log(" function called id is " + userIdToDelete)
 }
 const deleteUser = () => {
-    // Inertia.delete(route('adminDeleteUser.destroy', userIdToDelete.value), {
-    //     onSuccess: () => {
-    //         alert("Deleted successfully...")
-    //     },
-    //     onError: () => {
-    //         alert("An error occured while deleting data.")
-    //     }
-    // })
+     Inertia.delete(route('adminDeleteUser.destroy', userIdToDelete.value), {
+         onSuccess: () => {
+             alert("Deleted successfully...")
+         },
+         onError: () => {
+             alert("An error occured while deleting data.")
+         }
+     })
 }
 console.log("users => " + props.users)
 onMounted(() => {
