@@ -27,7 +27,7 @@ const deleteSubject = (id) => {
         <Link :href="route('addSubjectRoute')" class="button btn btn-success bi bi-plus"> New</Link>
        </div>
         <div class="container mx-0">
-            <table class="table table-striped table-responsive">
+            <table class="table table-striped table-responsive mb-2">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -44,6 +44,8 @@ const deleteSubject = (id) => {
                     </tr>
                 </tbody>
             </table>
+
+            <div class="container mt-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, temporibus!</div>
         </div>
     </div>
     </InstructorLayout>

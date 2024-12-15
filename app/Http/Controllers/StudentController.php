@@ -56,7 +56,7 @@ class StudentController extends Controller
 
      public function update(Request $request, $id)
 {
-    $validated = $request->validate([
+    $request->validate([
         'date_of_birth' => 'required|date',
         'gender' => 'required|string',
         'phone_number' => 'nullable|string',
@@ -64,8 +64,13 @@ class StudentController extends Controller
     ]);
 
     $student = StudentInfo::findOrFail($id);  
-    $student->update($validated);
-
+    $user = User::findOrFail($id);
+    $student->update([
+        'date_of_birth' => $request->date_of_birth,
+        'gender' => $request->gender,
+        'phone_number' => $request->phone_number,
+    ]);
+    $user->update($request->only('email'));
     return back()->with('success', 'Student data updated successfully.');
 }
 

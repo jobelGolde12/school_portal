@@ -44,19 +44,18 @@ class DataController extends Controller
         ]);
     }
         public function editUser(Request $request, $id){
-            $user = User::findOrFail($id);
-            $instructor = InstructorModel::findOrFail($id);
-
+            $user = User::find($id);
+            $instructor = InstructorModel::find($id);
+            $student = StudentInfo::find($id);
             $request->validate([
                 'name' => 'required|string|max:255',
-                'date_of_birth' => 'required|date',
+                'date_of_birth' => 'date',
                 'gender' => 'required|string|max:255',
                 'phone_number' => 'required|string|max:255',
                 'email' => 'required|email',
                 'enrollment_status' => 'nullable',
                 'gpa' => 'nullable',
                 'subjects_enrolled' => 'nullable',
-                'grade_by_subject' => 'nullable',
                 'type' => 'nullable',
             ]);
 
@@ -66,7 +65,7 @@ class DataController extends Controller
                 'email' => $request->email,
                 'type' => $request->type,
             ]);
-
+            
             $instructor->updateOrCreate([
                  'date_of_birth' => $request->date_of_birth,
                  'phone_number' => $request->phone_number,
@@ -79,18 +78,25 @@ class DataController extends Controller
                 'type' => $request->type,
             ]);
 
-            $instructor->updateOrCreate([
+            $student->updateOrCreate([
                  'date_of_birth' => $request->date_of_birth,
                  'phone_number' => $request->phone_number,
                  'gender' => $request->gender,
                  'enrollment_status' => $request->enrollment_status,
                  'gpa' => $request->gpa,
                  'subjects_enrolled' => $request->subjects_enrolled,
-                 'grade_by_subject' => $request->grade_by_subject
+            ]); 
+        }else if($request->type === 'user'){
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'type' => $request->type,
             ]);
-        }
 
-        return Inertia::render('/dashboard');
+        }
+        $data = User::all();
+        // return Inertia::render('ViewAllUsers', ['users' => $data]);
+
     }
   
 
